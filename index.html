@@ -193,9 +193,9 @@
      Principes (cf. brief) :
      - le cadre ne bouge pas, l'image grandit derrière ;
      - 1,7 s de survol continu avant que le rapprochement commence ;
-     - l'approche est focalisée sur le CENTRE de l'œuvre jusqu'à 200% ;
-     - ce n'est qu'une fois les 200% atteints que l'on peut naviguer
-       (déplacer la souris) dans l'image, avec inertie ;
+     - l'approche démarre focalisée sur le CENTRE de l'œuvre ;
+     - dès que le zoom a débuté, on peut naviguer (déplacer la souris)
+       dans l'image, avec inertie ; le focus au centre n'agit qu'au tout début ;
      - retour lent et recentrage à la sortie.                       */
 
   const ZOOM      = 2.0;    // 200 %
@@ -203,7 +203,7 @@
   const EASE_ZOOM = 0.0032; // approche très lente, contemplative
   const EASE_OUT  = 0.035;  // vitesse de retour
   const EASE_PAN  = 0.055;  // inertie du regard
-  const NAV_AT    = 0.985;  // navigation déverrouillée à ~200% atteints
+  const NAV_FROM  = 1.03;   // navigation dès que le zoom a débuté (recentrage au tout début seulement)
 
   let inside=false, timer=null, navigable=false;
   let scale=1, targetScale=1;
@@ -214,9 +214,9 @@
     const ease = (targetScale>scale) ? EASE_ZOOM : EASE_OUT;
     scale += (targetScale-scale)*ease;
 
-    // on ne peut naviguer qu'une fois le 200% (presque) atteint
-    navigable = (targetScale===ZOOM && scale >= ZOOM*NAV_AT);
-    if(!navigable){ tx=.5; ty=.5; }   // approche : focalisation au centre
+    // navigation possible dès que le zoom a débuté ; recentrage seulement au tout début
+    navigable = (targetScale===ZOOM && scale >= NAV_FROM);
+    if(!navigable){ tx=.5; ty=.5; }   // tout début de l'approche : focalisation au centre
 
     px += (tx-px)*EASE_PAN;
     py += (ty-py)*EASE_PAN;
