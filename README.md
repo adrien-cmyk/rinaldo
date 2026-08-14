@@ -1,37 +1,39 @@
 # Rinaldo Marasco — Website prototype
 
-Static prototype of the artist's site. No build step: open `index.html` in a
-browser, or serve the folder over GitHub Pages.
+Static prototype. No build step: open `index.html`, or serve the folder on GitHub Pages.
 
 ## Pages
-- `index.html` — Home. Single work confronting the visitor, with **Mode Proximité**
-  (hover the artwork: after a short latency the image slowly draws closer inside a
-  fixed frame, with organic inertia and a slow return). The arrow opens Territories.
-- `territories.html` — The *Territories* section: five works whose simple global
-  forms hold dense internal ecosystems.
+- `index.html` — Home. Single work with **Mode Proximité** (hover: after 1.7 s the
+  image slowly draws closer from the centre up to 200 %; once the zoom has started
+  you can move around inside it; slow return on exit). Arrow scrolls to the menu.
+- `territories.html` — The *Territories* section: intro text + the 11 works.
+  - Each work carries **Mode Proximité**, except the four **NoZoom** pieces
+    (Contigo, Soplada, Soplada 2, Volando).
+  - Captions follow the catalogue (dimensions converted mm → cm; "Ink" shown as
+    "Marker"). Collection shown only where known (Big Bang).
+  - Under each work: **detail thumbnails** that open in a **lightbox**.
+  - Intro right-hand white area: **discover.png** revealed only under the cursor
+    (a "flashlight" hover effect).
+
+## ⚠️ discover.png
+`assets/discover.png` is a **placeholder**. Replace it with the real image —
+same path, same name — and the flashlight effect will use it as-is.
 
 ## Structure
 ```
 index.html
 territories.html
 assets/
-  seed.webp        high-resolution Seed (home, for the close-up)
-  seed-1500.webp   gallery version
-  bigbang.webp  peace.webp  guardians.webp  axis.webp
+  <work>.webp            display / zoom master (e.g. seed, bigbang, …)
+  <work>-d1/-d2/-d3.webp detail crops (lightbox)
+  discover.png           placeholder — replace
 ```
 
-## Mode Proximité — current parameters (home)
-Editable at the top of the `<script>` in `index.html`:
-- latency before the approach begins: **1.7 s**
-- maximum zoom: **314 %**
-- approach easing: **0.0032** (very slow, contemplative)
-
-## Notes for the client
-- Work captions are placeholders (*Year · Technique · Dimensions*) except **Big Bang**.
-  Final year / technique / dimensions to be provided per work.
-- "View work" links are inactive — individual work pages are not built yet.
-- Typography: Helvetica Neue. Letter-spacing is used **only** in the menu; titles have none.
+## Typography
+Helvetica Neue. Body text is 16px (desktop and mobile). Letter-spacing is used
+**only** in the menu; titles and captions have none. Captions align to the "R"
+of the RINALDO MARASCO wordmark.
 
 ## GitHub Pages
-Push to a repo, then Settings → Pages → deploy from the `main` branch (root).
-The `.nojekyll` file is included so assets are served as-is.
+Push to a repo, then Settings → Pages → deploy from `main` (root).
+`.nojekyll` is included so assets are served as-is.
