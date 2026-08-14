@@ -115,7 +115,7 @@
   .entries a{
     color:var(--ink); text-decoration:none;
     font-size:clamp(20px, 3.2vw, 30px);
-    font-weight:500; letter-spacing:.42em; text-transform:uppercase;
+    font-weight:500; letter-spacing:0; text-transform:uppercase;
     opacity:0; transform:translateY(14px);
     transition:opacity 1s ease, transform 1s ease, color .4s;
   }
@@ -174,6 +174,13 @@
   </button>
 </section>
 
+<section class="entries" id="entries">
+  <a href="territories.html">Works</a>
+  <a href="#">Editions</a>
+  <a href="#">About</a>
+  <a href="#">Contact</a>
+</section>
+
 <script>
 (function(){
   const frame = document.getElementById('prox');
@@ -185,24 +192,32 @@
   /* ----- Mode Proximité ----------------------------------------
      Principes (cf. brief) :
      - le cadre ne bouge pas, l'image grandit derrière ;
-     - latence d'entrée (~500 ms) pour éviter le déclenchement brutal ;
-     - montée lente vers ~2.1x, inertie sur le déplacement ;
-     - retour lent à la sortie.                                    */
+     - 1,7 s de survol continu avant que le rapprochement commence ;
+     - l'approche est focalisée sur le CENTRE de l'œuvre jusqu'à 200% ;
+     - ce n'est qu'une fois les 200% atteints que l'on peut naviguer
+       (déplacer la souris) dans l'image, avec inertie ;
+     - retour lent et recentrage à la sortie.                       */
 
-  const ZOOM      = 3.14;   // 314 %
-  const LATENCY   = 1700;   // 1,7 s de survol avant le rapprochement
+  const ZOOM      = 2.0;    // 200 %
+  const LATENCY   = 1700;   // 1,7 s de survol continu avant le rapprochement
   const EASE_ZOOM = 0.0032; // approche très lente, contemplative
   const EASE_OUT  = 0.035;  // vitesse de retour
   const EASE_PAN  = 0.055;  // inertie du regard
+  const NAV_AT    = 0.985;  // navigation déverrouillée à ~200% atteints
 
-  let inside=false, engaged=false, timer=null;
+  let inside=false, timer=null, navigable=false;
   let scale=1, targetScale=1;
-  let px=.5, py=.5, tx=.5, ty=.5;   // point regardé (0..1)
+  let px=.5, py=.5, tx=.5, ty=.5;   // focale (0..1) — départ au centre
   let rafActive=false;
 
   function loop(){
     const ease = (targetScale>scale) ? EASE_ZOOM : EASE_OUT;
     scale += (targetScale-scale)*ease;
+
+    // on ne peut naviguer qu'une fois le 200% (presque) atteint
+    navigable = (targetScale===ZOOM && scale >= ZOOM*NAV_AT);
+    if(!navigable){ tx=.5; ty=.5; }   // approche : focalisation au centre
+
     px += (tx-px)*EASE_PAN;
     py += (ty-py)*EASE_PAN;
 
@@ -230,35 +245,34 @@
   /* --- souris --- */
   frame.addEventListener('mouseenter', e=>{
     inside=true; frame.classList.add('is-inside');
-    const [x,y]=pointFromEvent(e); tx=x; ty=y; px=x; py=y;
+    tx=.5; ty=.5;                               // le rapprochement vise le centre
+    const [ , , rx, ry]=pointFromEvent(e);
+    dot.style.left=rx+'px'; dot.style.top=ry+'px';
     clearTimeout(timer);
-    timer=setTimeout(()=>{ if(inside){ engaged=true; targetScale=ZOOM; kick(); } }, LATENCY);
+    timer=setTimeout(()=>{ if(inside){ targetScale=ZOOM; kick(); } }, LATENCY);
   });
   frame.addEventListener('mousemove', e=>{
     const [x,y,rx,ry]=pointFromEvent(e);
-    tx=x; ty=y;
     dot.style.left=rx+'px'; dot.style.top=ry+'px';
-    if(engaged) kick();
+    if(navigable){ tx=x; ty=y; kick(); }        // navigation possible une fois à 200%
   });
   frame.addEventListener('mouseleave', ()=>{
-    inside=false; engaged=false; frame.classList.remove('is-inside');
+    inside=false; frame.classList.remove('is-inside');
     clearTimeout(timer);
-    targetScale=1; kick();
+    targetScale=1; tx=.5; ty=.5; kick();        // retour lent + recentrage
   });
 
-  /* --- tactile : 1er toucher = approche, 2e = retour --- */
-  let touchEngaged=false;
+  /* --- tactile : 1er toucher = approche (centre), 2e = retour --- */
+  let touchOn=false;
   frame.addEventListener('touchstart', e=>{
-    if(!touchEngaged){
-      touchEngaged=true;
-      const [x,y]=pointFromEvent(e); tx=x; ty=y; px=x; py=y;
-      targetScale=ZOOM; kick();
+    if(!touchOn){
+      touchOn=true; tx=.5; ty=.5; targetScale=ZOOM; kick();
     } else {
-      touchEngaged=false; targetScale=1; kick();
+      touchOn=false; targetScale=1; tx=.5; ty=.5; kick();
     }
   }, {passive:true});
   frame.addEventListener('touchmove', e=>{
-    if(touchEngaged){
+    if(touchOn && navigable){                   // exploration une fois à 200%
       const [x,y]=pointFromEvent(e); tx=x; ty=y; kick();
       if(e.cancelable) e.preventDefault();
     }
@@ -267,7 +281,8 @@
   /* ----- flèche différée : ~4,5 s après l'arrivée ----- */
   setTimeout(()=>down.classList.add('visible'), reduced?800:4500);
   down.addEventListener('click', ()=>{
-    window.location.href='territories.html';
+    const t=document.getElementById('entries');
+    if(t) t.scrollIntoView({behavior: reduced?'auto':'smooth'});
   });
 
   /* ----- révélation des entrées au scroll ----- */
