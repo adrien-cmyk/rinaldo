@@ -12,11 +12,11 @@ Static prototype. No build step: open `index.html`, or serve the folder on GitHu
   - Captions follow the catalogue (dimensions converted mm → cm; "Ink" shown as
     "Marker"). Collection shown only where known (Big Bang).
   - Under each work: **detail thumbnails** that open in a **lightbox**.
-  - Intro right-hand white area: **discover.png** revealed only under the cursor
+  - Intro right-hand white area: **discover.webp** revealed only under the cursor
     (a "flashlight" hover effect).
 
-## ⚠️ discover.png
-`assets/discover.png` is a **placeholder**. Replace it with the real image —
+## ⚠️ discover.webp
+`assets/discover.webp` is a **placeholder**. Replace it with the real image —
 same path, same name — and the flashlight effect will use it as-is.
 
 ## Structure
@@ -26,7 +26,7 @@ territories.html
 assets/
   <work>.webp            display / zoom master (e.g. seed, bigbang, …)
   <work>-d1/-d2/-d3.webp detail crops (lightbox)
-  discover.png           placeholder — replace
+  discover.webp           placeholder — replace
 ```
 
 ## Typography
