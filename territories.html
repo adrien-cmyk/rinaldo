@@ -9,18 +9,22 @@
     --ink:#111111; --paper:#ffffff; --muted:#666666; --faint:#9a9a9a; --line:#ececec;
     --edge:48px; --logo:42px; --gap:16px;
     --content-x: calc(var(--edge) + var(--logo) + var(--gap));
-    --track-menu:.30em; --fs:16px;
+    --track-menu:.30em; --fs:16px; --lh:1.45;      /* interlignage unique partout */
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{background:var(--paper);color:var(--ink);font-family:"Helvetica Neue","Helvetica","Arial",sans-serif;font-size:var(--fs);line-height:1.5;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  body{background:var(--paper);color:var(--ink);
+    font-family:"Helvetica Neue","Helvetica","Arial",sans-serif;
+    font-size:var(--fs);line-height:var(--lh);
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
 
-  header{position:fixed;inset:0 0 auto 0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:30px var(--edge);background:linear-gradient(var(--paper) 68%,rgba(255,255,255,0));}
+  /* menu : fond blanc solide (aucun fondu/blur) */
+  header{position:fixed;inset:0 0 auto 0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:30px var(--edge);background:var(--paper);}
   .brand{display:flex;align-items:center;gap:var(--gap);text-decoration:none;color:var(--ink);}
   .brand svg{width:var(--logo);height:var(--logo);display:block;}
-  .brand-name{font-size:15px;font-weight:600;letter-spacing:var(--track-menu);text-transform:uppercase;white-space:nowrap;}
+  .brand-name{font-family:inherit;font-size:15px;font-weight:600;letter-spacing:var(--track-menu);text-transform:uppercase;white-space:nowrap;}
   nav{display:flex;align-items:center;gap:36px;}
-  nav a{color:var(--ink);text-decoration:none;font-size:12.5px;font-weight:500;letter-spacing:var(--track-menu);text-transform:uppercase;position:relative;padding:4px 0;}
+  nav a{font-family:inherit;color:var(--ink);text-decoration:none;font-size:12.5px;font-weight:500;letter-spacing:var(--track-menu);text-transform:uppercase;position:relative;padding:4px 0;}
   nav a.current{color:var(--muted);}
   nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.22,1,.36,1);}
   nav a:hover::after,nav a:focus-visible::after,nav a.current::after{transform:scaleX(1);}
@@ -29,30 +33,32 @@
   .lang a{letter-spacing:.16em;font-size:12px;color:var(--faint);}
   .lang a.active{color:var(--ink);}
 
-  /* intro : texte + discover côte à côte, alignés en hauteur */
+  /* intro */
   .intro{position:relative;min-height:100vh;min-height:100svh;}
   .intro-inner{display:flex;align-items:stretch;gap:48px;padding:130px var(--edge) 0 var(--content-x);}
   .intro-text{flex:0 0 auto;width:min(30em,44%);}
-  h1{font-size:30px;font-weight:700;letter-spacing:0;line-height:1.05;margin-bottom:24px;}
-  .intro-text p{font-size:var(--fs);line-height:1.42;color:#2b2b2b;text-align:justify;hyphens:auto;-webkit-hyphens:auto;}
+  h1{font-family:inherit;font-size:30px;font-weight:700;letter-spacing:0;line-height:var(--lh);margin-bottom:24px;}
+  .intro-text p{font-family:inherit;font-size:var(--fs);line-height:var(--lh);letter-spacing:0;color:#2b2b2b;text-align:justify;hyphens:auto;-webkit-hyphens:auto;}
   .intro-text p + p{margin-top:18px;}
 
+  /* loupe (lampe de poche) : cercle net, -30% */
   .discover{flex:1 1 auto;position:relative;overflow:hidden;background:var(--paper);}
   .discover img{width:100%;height:100%;object-fit:contain;display:block;opacity:0;transition:opacity .35s ease;--mx:-9999px;--my:-9999px;
-    -webkit-mask-image:radial-gradient(circle 170px at var(--mx) var(--my),#000 0,#000 55%,transparent 80%);
-            mask-image:radial-gradient(circle 170px at var(--mx) var(--my),#000 0,#000 55%,transparent 80%);}
+    -webkit-mask-image:radial-gradient(circle 119px at var(--mx) var(--my),#000 0 100%,transparent 100%);
+            mask-image:radial-gradient(circle 119px at var(--mx) var(--my),#000 0 100%,transparent 100%);}
   .discover.lit img{opacity:1;}
 
   .down{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);background:none;border:none;cursor:pointer;padding:10px;z-index:3;}
   .down svg path{stroke:#4a4a4a;transition:stroke .4s;}
   .down:hover svg path{stroke:var(--ink);}
 
-  /* œuvres : image centrée ; sous elle, cartel (gauche) + thumbnails (droite) à la largeur de l'image */
+  /* œuvres : boîte commune -> carrés identiques, verticales même hauteur (alignées) */
   main{padding:20px 0 0;}
   .work{padding:7vh var(--edge);}
   .work-inner{width:fit-content;max-width:100%;margin:0 auto;}
-  .work-media{position:relative;aspect-ratio:var(--ar);background:var(--paper);width:min(544px,90vw);box-shadow:0 18px 45px rgba(0,0,0,.055);}
-  .work-media.tall{width:auto;height:min(66vh,720px);}
+  .work-media{position:relative;aspect-ratio:var(--ar);background:var(--paper);box-shadow:0 18px 45px rgba(0,0,0,.055);}
+  .work-media.wbound{width:min(560px,90vw);height:auto;}
+  .work-media.hbound{height:min(680px,74vh);width:auto;}
   .work-media img{display:block;width:100%;height:100%;object-fit:cover;}
   .prox{overflow:hidden;cursor:none;touch-action:pan-y;}
   .prox img{position:absolute;inset:0;transform-origin:0 0;will-change:transform;user-select:none;-webkit-user-drag:none;}
@@ -60,14 +66,14 @@
   .prox.is-inside .dot{opacity:.55;}
   @media (hover:none){.prox{cursor:default;}.prox .dot{display:none;}}
 
-  .caption-row{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;width:100%;margin-top:24px;}
+  /* cartel (4 lignes) : Titre (date) en gras ; dimension ; technique sur 2 lignes */
+  .caption-row{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;width:100%;margin-top:22px;}
+  .cartel{line-height:var(--lh);}
   .c-head .c-title{font-weight:700;text-transform:uppercase;letter-spacing:0;color:var(--ink);}
-  .c-head .c-date{font-weight:300;color:var(--muted);margin-left:8px;}
-  .c-dim{margin-top:6px;color:var(--muted);}
-  .c-tech,.c-coll{color:var(--muted);}
-  .cartel{line-height:1.45;}
-  .d-row{display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap;align-content:flex-start;}
-  .thumb{width:88px;height:88px;padding:0;border:1px solid var(--line);background:none;cursor:pointer;overflow:hidden;transition:border-color .3s,transform .5s cubic-bezier(.22,1,.36,1);}
+  .c-head .c-date{font-weight:700;color:var(--ink);}
+  .c-dim,.c-tech{color:var(--muted);}
+  .d-row{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;align-content:flex-start;}
+  .thumb{width:44px;height:44px;padding:0;border:1px solid var(--line);background:none;cursor:pointer;overflow:hidden;transition:border-color .3s,transform .5s cubic-bezier(.22,1,.36,1);}
   .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
   .thumb:hover{border-color:var(--ink);transform:translateY(-2px);}
 
@@ -97,8 +103,9 @@
     .discover img{opacity:1;-webkit-mask-image:none;mask-image:none;}
     .down{display:none;}
     .work{padding:5vh 20px;}
-    .work-media{width:min(544px,90vw);}.work-media.tall{width:auto;height:min(60vh,620px);}
-    .caption-row{flex-direction:column;gap:16px;}
+    .work-media.wbound{width:min(560px,90vw);}
+    .work-media.hbound{height:min(600px,70vh);}
+    .caption-row{flex-direction:column;gap:14px;}
     .d-row{justify-content:flex-start;}
     footer{flex-direction:column;align-items:flex-start;gap:16px;padding:34px 20px 46px;}
   }
@@ -148,15 +155,16 @@
 <main id="works">
   <figure class="work" id="seed">
     <div class="work-inner">
-      <div class="work-media prox" style="--ar:5634/5545;" aria-label="Seed — approchez pour voir de plus près">
+      <div class="work-media prox wbound" style="--ar:3200/3149;" data-zoom="4.0" aria-label="Seed — approchez pour voir de plus près">
         <img src="assets/seed.webp" alt="Seed — Rinaldo Marasco" draggable="false">
           <div class="dot"></div>
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
-          <div class="c-head"><span class="c-title">SEED</span> <span class="c-date">2022</span></div>
+          <div class="c-head"><span class="c-title">SEED</span> <span class="c-date">(2022)</span></div>
           <div class="c-dim">110 × 110 cm</div>
-          <div class="c-tech">Marker, plant extract and acrylic</div>
+          <div class="c-tech">Marker,</div>
+          <div class="c-tech">plant extract and acrylic</div>
         </figcaption>
         <div class="d-row" data-title="Seed">
           <button class="thumb" data-full="assets/seed-d1.webp"><img src="assets/seed-d1.webp" alt="Seed — detail 1"></button>
@@ -169,16 +177,16 @@
 
   <figure class="work" id="bigbang">
     <div class="work-inner">
-      <div class="work-media prox tall" style="--ar:7867/7958;" aria-label="Big Bang — approchez pour voir de plus près">
+      <div class="work-media prox wbound" style="--ar:2373/2400;" data-zoom="8.0" aria-label="Big Bang — approchez pour voir de plus près">
         <img src="assets/bigbang.webp" alt="Big Bang — Rinaldo Marasco" draggable="false">
           <div class="dot"></div>
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
-          <div class="c-head"><span class="c-title">BIG BANG</span> <span class="c-date">2024–2025</span></div>
+          <div class="c-head"><span class="c-title">BIG BANG</span> <span class="c-date">(2024–2025)</span></div>
           <div class="c-dim">172 × 172 cm</div>
-          <div class="c-tech">Marker, plant extract and oil on panel</div>
-          <div class="c-coll">Private collection</div>
+          <div class="c-tech">Marker,</div>
+          <div class="c-tech">plant extract and oil on panel</div>
         </figcaption>
         <div class="d-row" data-title="Big Bang">
           <button class="thumb" data-full="assets/bigbang-d1.webp"><img src="assets/bigbang-d1.webp" alt="Big Bang — detail 1"></button>
@@ -191,15 +199,16 @@
 
   <figure class="work" id="peace">
     <div class="work-inner">
-      <div class="work-media prox tall" style="--ar:2826/3660;" aria-label="Peace — approchez pour voir de plus près">
+      <div class="work-media prox hbound" style="--ar:1853/2400;" data-zoom="4.0" aria-label="Peace — approchez pour voir de plus près">
         <img src="assets/peace.webp" alt="Peace — Rinaldo Marasco" draggable="false">
           <div class="dot"></div>
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
-          <div class="c-head"><span class="c-title">PEACE</span> <span class="c-date">2026</span></div>
+          <div class="c-head"><span class="c-title">PEACE</span> <span class="c-date">(2026)</span></div>
           <div class="c-dim">80 × 110 cm</div>
-          <div class="c-tech">Marker, acrylic and plant extract</div>
+          <div class="c-tech">Marker,</div>
+          <div class="c-tech">acrylic and plant extract</div>
         </figcaption>
         <div class="d-row" data-title="Peace">
           <button class="thumb" data-full="assets/peace-d1.webp"><img src="assets/peace-d1.webp" alt="Peace — detail 1"></button>
@@ -212,15 +221,16 @@
 
   <figure class="work" id="guardians">
     <div class="work-inner">
-      <div class="work-media prox tall" style="--ar:1743/2000;" aria-label="The Guardians — approchez pour voir de plus près">
+      <div class="work-media prox wbound" style="--ar:1743/2000;" data-zoom="4.0" aria-label="The Guardians — approchez pour voir de plus près">
         <img src="assets/guardians.webp" alt="The Guardians — Rinaldo Marasco" draggable="false">
           <div class="dot"></div>
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
-          <div class="c-head"><span class="c-title">THE GUARDIANS</span> <span class="c-date">2025</span></div>
+          <div class="c-head"><span class="c-title">THE GUARDIANS</span> <span class="c-date">(2025)</span></div>
           <div class="c-dim">70 × 80 cm</div>
-          <div class="c-tech">Marker, plant extract and acrylic</div>
+          <div class="c-tech">Marker,</div>
+          <div class="c-tech">plant extract and acrylic</div>
         </figcaption>
         <div class="d-row" data-title="The Guardians">
           <button class="thumb" data-full="assets/guardians-d1.webp"><img src="assets/guardians-d1.webp" alt="The Guardians — detail 1"></button>
@@ -233,15 +243,16 @@
 
   <figure class="work" id="axis">
     <div class="work-inner">
-      <div class="work-media prox tall" style="--ar:4222/6775;" aria-label="Axis — approchez pour voir de plus près">
+      <div class="work-media prox hbound" style="--ar:1496/2400;" data-zoom="4.0" aria-label="Axis — approchez pour voir de plus près">
         <img src="assets/axis.webp" alt="Axis — Rinaldo Marasco" draggable="false">
           <div class="dot"></div>
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
-          <div class="c-head"><span class="c-title">AXIS</span> <span class="c-date">2022</span></div>
+          <div class="c-head"><span class="c-title">AXIS</span> <span class="c-date">(2022)</span></div>
           <div class="c-dim">103 × 148 cm</div>
-          <div class="c-tech">Marker, oil, plant extract and pigment</div>
+          <div class="c-tech">Marker, oil,</div>
+          <div class="c-tech">plant extract and pigment</div>
         </figcaption>
         <div class="d-row" data-title="Axis">
           <button class="thumb" data-full="assets/axis-d1.webp"><img src="assets/axis-d1.webp" alt="Axis — detail 1"></button>
@@ -254,15 +265,15 @@
 
   <figure class="work" id="amor">
     <div class="work-inner">
-      <div class="work-media prox tall" style="--ar:1297/1417;" aria-label="Amor — approchez pour voir de plus près">
+      <div class="work-media wbound" style="--ar:1297/1417;">
         <img src="assets/amor.webp" alt="Amor — Rinaldo Marasco" draggable="false">
-          <div class="dot"></div>
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
-          <div class="c-head"><span class="c-title">AMOR</span> <span class="c-date">2023</span></div>
+          <div class="c-head"><span class="c-title">AMOR</span> <span class="c-date">(2023)</span></div>
           <div class="c-dim">103 × 148 cm</div>
-          <div class="c-tech">Marker, plant extract and oil</div>
+          <div class="c-tech">Marker,</div>
+          <div class="c-tech">plant extract and oil</div>
         </figcaption>
         <div class="d-row" data-title="Amor">
           <button class="thumb" data-full="assets/amor-d1.webp"><img src="assets/amor-d1.webp" alt="Amor — detail 1"></button>
@@ -275,14 +286,15 @@
 
   <figure class="work" id="contigo">
     <div class="work-inner">
-      <div class="work-media tall" style="--ar:969/1417;">
+      <div class="work-media hbound" style="--ar:969/1417;">
         <img src="assets/contigo.webp" alt="Contigo — Rinaldo Marasco" draggable="false">
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
-          <div class="c-head"><span class="c-title">CONTIGO</span> <span class="c-date">2023</span></div>
+          <div class="c-head"><span class="c-title">CONTIGO</span> <span class="c-date">(2023)</span></div>
           <div class="c-dim">50 × 77 cm</div>
-          <div class="c-tech">Marker, plant extract and acrylic</div>
+          <div class="c-tech">Marker,</div>
+          <div class="c-tech">plant extract and acrylic</div>
         </figcaption>
         <div class="d-row" data-title="Contigo">
           <button class="thumb" data-full="assets/contigo-d1.webp"><img src="assets/contigo-d1.webp" alt="Contigo — detail 1"></button>
@@ -295,14 +307,15 @@
 
   <figure class="work" id="soplada">
     <div class="work-inner">
-      <div class="work-media tall" style="--ar:1075/1417;">
+      <div class="work-media hbound" style="--ar:1075/1417;">
         <img src="assets/soplada.webp" alt="Soplada — Rinaldo Marasco" draggable="false">
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
-          <div class="c-head"><span class="c-title">SOPLADA</span> <span class="c-date">2025</span></div>
+          <div class="c-head"><span class="c-title">SOPLADA</span> <span class="c-date">(2025)</span></div>
           <div class="c-dim">15 × 21 cm</div>
-          <div class="c-tech">Marker and acrylic</div>
+          <div class="c-tech">Marker</div>
+          <div class="c-tech">and acrylic</div>
         </figcaption>
         <div class="d-row" data-title="Soplada">
           <button class="thumb" data-full="assets/soplada-d1.webp"><img src="assets/soplada-d1.webp" alt="Soplada — detail 1"></button>
@@ -315,14 +328,15 @@
 
   <figure class="work" id="soplada-2">
     <div class="work-inner">
-      <div class="work-media tall" style="--ar:1290/1701;">
+      <div class="work-media hbound" style="--ar:1138/1500;">
         <img src="assets/soplada-2.webp" alt="Soplada 2 — Rinaldo Marasco" draggable="false">
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
-          <div class="c-head"><span class="c-title">SOPLADA 2</span> <span class="c-date">2025</span></div>
+          <div class="c-head"><span class="c-title">SOPLADA 2</span> <span class="c-date">(2025)</span></div>
           <div class="c-dim">15 × 21 cm</div>
-          <div class="c-tech">Marker, plant extract and acrylic</div>
+          <div class="c-tech">Marker,</div>
+          <div class="c-tech">plant extract and acrylic</div>
         </figcaption>
         <div class="d-row" data-title="Soplada 2">
           <button class="thumb" data-full="assets/soplada-2-d1.webp"><img src="assets/soplada-2-d1.webp" alt="Soplada 2 — detail 1"></button>
@@ -335,14 +349,15 @@
 
   <figure class="work" id="volando">
     <div class="work-inner">
-      <div class="work-media tall" style="--ar:1290/1701;">
+      <div class="work-media hbound" style="--ar:1138/1500;">
         <img src="assets/volando.webp" alt="Volando — Rinaldo Marasco" draggable="false">
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
-          <div class="c-head"><span class="c-title">VOLANDO</span> <span class="c-date">2025</span></div>
+          <div class="c-head"><span class="c-title">VOLANDO</span> <span class="c-date">(2025)</span></div>
           <div class="c-dim">15 × 21 cm</div>
-          <div class="c-tech">Marker and acrylic</div>
+          <div class="c-tech">Marker</div>
+          <div class="c-tech">and acrylic</div>
         </figcaption>
         <div class="d-row" data-title="Volando">
           <button class="thumb" data-full="assets/volando-d1.webp"><img src="assets/volando-d1.webp" alt="Volando — detail 1"></button>
@@ -355,15 +370,16 @@
 
   <figure class="work" id="toma">
     <div class="work-inner">
-      <div class="work-media prox tall" style="--ar:1290/1701;" aria-label="Toma — approchez pour voir de plus près">
+      <div class="work-media prox hbound" style="--ar:1290/1701;" data-zoom="4.0" aria-label="Toma — approchez pour voir de plus près">
         <img src="assets/toma.webp" alt="Toma — Rinaldo Marasco" draggable="false">
           <div class="dot"></div>
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
-          <div class="c-head"><span class="c-title">TOMA</span> <span class="c-date">2025</span></div>
+          <div class="c-head"><span class="c-title">TOMA</span> <span class="c-date">(2025)</span></div>
           <div class="c-dim">15 × 21 cm</div>
-          <div class="c-tech">Marker and acrylic</div>
+          <div class="c-tech">Marker</div>
+          <div class="c-tech">and acrylic</div>
         </figcaption>
         <div class="d-row" data-title="Toma">
           <button class="thumb" data-full="assets/toma-d1.webp"><img src="assets/toma-d1.webp" alt="Toma — detail 1"></button>
@@ -392,10 +408,10 @@
 </div>
 
 <script>
-/* Mode Proximité — 1,7 s → 400% centré, navigation dès le début du zoom */
+/* Mode Proximité — 1,7 s → zoom centré (par œuvre via data-zoom), navigation dès le début */
 function initProx(frame){
   const img=frame.querySelector('img'), dot=frame.querySelector('.dot');
-  const ZOOM=4.0, LAT=1700, EZ=0.0032, EO=0.035, EP=0.055, NAV=1.03;
+  const ZOOM=parseFloat(frame.dataset.zoom||'4'), LAT=1700, EZ=0.0032, EO=0.035, EP=0.055, NAV=1.03;
   let inside=false,timer=null,nav=false,scale=1,tScale=1,px=.5,py=.5,tx=.5,ty=.5,raf=false;
   function loop(){
     const e=(tScale>scale)?EZ:EO; scale+=(tScale-scale)*e;
@@ -419,7 +435,7 @@ function initProx(frame){
 }
 document.querySelectorAll('.prox').forEach(initProx);
 
-/* discover : lampe de poche au survol */
+/* loupe : révélation au survol */
 (function(){
   const disc=document.getElementById('discover'); if(!disc) return;
   const img=disc.querySelector('img');
