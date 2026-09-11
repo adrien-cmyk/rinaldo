@@ -111,6 +111,14 @@
     footer{flex-direction:column;align-items:flex-start;gap:16px;padding:34px 20px 46px;}
   }
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+
+  /* sous-menu Works */
+  .has-sub{position:relative;display:flex;align-items:center;}
+  .submenu{position:absolute;top:100%;left:0;margin-top:10px;padding:15px 17px;display:flex;flex-direction:column;gap:11px;background:var(--paper);box-shadow:0 14px 34px rgba(0,0,0,.08);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .28s ease,transform .28s ease,visibility .28s;min-width:190px;z-index:60;}
+  .submenu a{font-size:12px;letter-spacing:var(--track-menu);text-transform:uppercase;color:var(--muted);white-space:nowrap;padding:0;}
+  .submenu a::after{display:none;}
+  .submenu a:hover{color:var(--ink);}
+  .has-sub:hover .submenu,.has-sub:focus-within .submenu,.has-sub.open .submenu{opacity:1;visibility:visible;transform:none;}
 </style>
 </head>
 <body>
@@ -129,7 +137,16 @@
     <span class="brand-name">Rinaldo&nbsp;Marasco</span>
   </a>
   <nav>
-    <a href="#" class="current">Works</a>
+    <div class="has-sub" id="worksMenu">
+      <a href="#" class="current">Works</a>
+      <div class="submenu">
+        <a href="territories.html">Territories</a>
+        <a href="origins.html">Origins</a>
+        <a href="fantasmagoria.html">Fantasmagoria</a>
+        <a href="precious-nature.html">Precious Nature</a>
+        <a href="#">Observations</a>
+      </div>
+    </div>
     <a href="#">Editions</a>
     <a href="#">About</a>
     <a href="#">Contact</a>
@@ -419,8 +436,7 @@
     <a href="territories.html">Territories</a>
     <a href="origins.html">Origins</a>
     <a href="fantasmagoria.html">Fantasmagoria</a>
-    <a href="sculptures.html">Sculptures</a>
-    <a href="#">Precious Nature</a>
+    <a href="precious-nature.html">Precious Nature</a>
     <a href="#">Observations</a>
   </div>
   <div class="copy">© Rinaldo Marasco</div>
@@ -491,5 +507,6 @@ document.getElementById('toworks').addEventListener('click',()=>{ document.getEl
   document.addEventListener('keydown',e=>{ if(!lb.classList.contains('open'))return; if(e.key==='Escape')close(); else if(e.key==='ArrowLeft')step(-1); else if(e.key==='ArrowRight')step(1); });
 })();
 </script>
+<script>(function(){var w=document.getElementById("worksMenu");if(!w)return;var t=w.querySelector("a");t.addEventListener("click",function(e){e.preventDefault();w.classList.toggle("open");});document.addEventListener("click",function(e){if(!w.contains(e.target))w.classList.remove("open");});})();</script>
 </body>
 </html>
