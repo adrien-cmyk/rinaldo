@@ -343,9 +343,14 @@ function initProx(frame){
     clearTimeout(timer); timer=setTimeout(()=>{ if(inside){tScale=ZOOM;kick();} },LAT); });
   frame.addEventListener('mousemove',ev=>{ const p=pt(ev); if(dot){dot.style.left=p[2]+'px';dot.style.top=p[3]+'px';} if(nav){tx=p[0];ty=p[1];kick();} });
   frame.addEventListener('mouseleave',()=>{ inside=false; frame.classList.remove('is-inside'); clearTimeout(timer); tScale=1;tx=.5;ty=.5;kick(); });
-  let ton=false;
-  frame.addEventListener('touchstart',ev=>{ if(!ton){ton=true;tx=.5;ty=.5;tScale=ZOOM;kick();}else{ton=false;tScale=1;tx=.5;ty=.5;kick();} },{passive:true});
-  frame.addEventListener('touchmove',ev=>{ if(ton&&nav){const p=pt(ev);tx=p[0];ty=p[1];kick(); if(ev.cancelable)ev.preventDefault();} },{passive:false});
+  let engaged=false, lastTap=0;
+  frame.addEventListener('touchstart',ev=>{
+    const now=Date.now(); const p=pt(ev); const dt=now-lastTap; lastTap=now;
+    if(!engaged){ engaged=true; tScale=ZOOM; tx=.5; ty=.5; kick(); return; }   /* 1er tap : zoom centré */
+    if(dt<300){ engaged=false; tScale=1; tx=.5; ty=.5; kick(); return; }        /* double tap : sortie */
+    if(nav){ tx=p[0]; ty=p[1]; kick(); }                                        /* tap simple : orienter */
+  },{passive:true});
+  frame.addEventListener('touchmove',ev=>{ if(engaged&&nav){const p=pt(ev);tx=p[0];ty=p[1];kick(); if(ev.cancelable)ev.preventDefault();} },{passive:false});
 }
 document.querySelectorAll('.prox').forEach(initProx);
 

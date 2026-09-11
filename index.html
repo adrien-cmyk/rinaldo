@@ -280,16 +280,15 @@
   });
 
   /* --- tactile : 1er toucher = approche (centre), 2e = retour --- */
-  let touchOn=false;
+  let engaged=false, lastTap=0;
   frame.addEventListener('touchstart', e=>{
-    if(!touchOn){
-      touchOn=true; tx=.5; ty=.5; targetScale=ZOOM; kick();
-    } else {
-      touchOn=false; targetScale=1; tx=.5; ty=.5; kick();
-    }
+    const now=Date.now(); const [x,y]=pointFromEvent(e); const dt=now-lastTap; lastTap=now;
+    if(!engaged){ engaged=true; targetScale=ZOOM; tx=.5; ty=.5; kick(); return; }  // 1er tap : zoom centré
+    if(dt<300){ engaged=false; targetScale=1; tx=.5; ty=.5; kick(); return; }       // double tap : sortie
+    if(navigable){ tx=x; ty=y; kick(); }                                            // tap simple : orienter
   }, {passive:true});
   frame.addEventListener('touchmove', e=>{
-    if(touchOn && navigable){                   // exploration une fois à 200%
+    if(engaged && navigable){
       const [x,y]=pointFromEvent(e); tx=x; ty=y; kick();
       if(e.cancelable) e.preventDefault();
     }
