@@ -144,6 +144,52 @@
   .submenu a::after{display:none;}
   .submenu a:hover{color:var(--ink);}
   .has-sub:hover .submenu,.has-sub:focus-within .submenu,.has-sub.open .submenu{opacity:1;visibility:visible;transform:none;}
+
+  /* burger + menu mobile */
+  .burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:7px;}
+  .burger span{display:block;height:2px;width:100%;background:var(--ink);transition:transform .35s ease,opacity .3s ease;}
+  .mobile-menu{position:fixed;inset:0;background:var(--paper);z-index:38;display:flex;flex-direction:column;padding:118px var(--edge) 48px;transform:translateY(-100%);transition:transform .45s cubic-bezier(.22,1,.36,1);overflow-y:auto;}
+  .mobile-menu .mm-label{color:var(--faint);font-size:12px;letter-spacing:var(--track-menu);text-transform:uppercase;margin-bottom:4px;}
+  .mobile-menu a{font-size:15px;text-transform:uppercase;letter-spacing:var(--track-menu);text-decoration:none;color:var(--ink);padding:10px 0;}
+  .mobile-menu a.mm-sub{color:var(--muted);font-size:13.5px;padding:8px 0;}
+  .mobile-menu a.mm-top{border-top:1px solid var(--line);margin-top:8px;padding-top:16px;}
+  .mobile-menu .mm-lang{display:flex;gap:22px;margin-top:22px;}
+  .mobile-menu .mm-lang a{font-size:13px;color:var(--faint);padding:0;}
+  .mobile-menu .mm-lang a.active{color:var(--ink);}
+  body.menu-open{overflow:hidden;}
+  body.menu-open .mobile-menu{transform:none;}
+  body.menu-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  body.menu-open .burger span:nth-child(2){opacity:0;}
+  body.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  /* pages texte (about/contact/editions/exhibitions) */
+  .textpage{padding:150px var(--edge) 40px var(--content-x);max-width:calc(var(--content-x) + 900px);}
+  .textpage h1{font-size:30px;font-weight:700;line-height:var(--lh);margin-bottom:28px;}
+  .about-grid{display:flex;gap:56px;align-items:flex-start;}
+  .about-bio{max-width:40em;}
+  .about-bio p{font-size:var(--fs);line-height:var(--lh);color:#2b2b2b;text-align:justify;hyphens:auto;-webkit-hyphens:auto;}
+  .about-bio p + p{margin-top:16px;}
+  .portrait-slot{flex:0 0 260px;aspect-ratio:3/4;border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;color:var(--faint);font-size:12px;letter-spacing:var(--track-menu);text-transform:uppercase;}
+  .lede{font-size:var(--fs);line-height:var(--lh);color:#2b2b2b;max-width:46em;margin-bottom:40px;}
+  .contact-block{display:flex;flex-direction:column;gap:9px;margin-bottom:34px;}
+  .contact-block .row{font-size:var(--fs);color:var(--ink);}
+  .contact-block .muted, .ph{color:var(--faint);font-style:italic;}
+  .ed-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1040px;}
+  .ed-card .ed-img{aspect-ratio:4/5;border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;color:var(--faint);font-size:11px;letter-spacing:var(--track-menu);text-transform:uppercase;margin-bottom:14px;}
+  .ed-card .ed-t{font-size:var(--fs);font-weight:600;text-transform:uppercase;}
+  .ed-card .ed-m{font-size:var(--fs);color:var(--muted);}
+  .ed-card .ed-tag{font-size:13px;color:var(--faint);margin-top:4px;}
+  .exh-group{margin-bottom:48px;}
+  .exh-group h2{font-size:13px;font-weight:600;letter-spacing:var(--track-menu);text-transform:uppercase;color:var(--muted);margin-bottom:18px;}
+  .exh-row{display:grid;grid-template-columns:70px 1fr;gap:20px;padding:12px 0;border-top:1px solid var(--line);font-size:var(--fs);}
+  .exh-row .y{color:var(--muted);}
+  .exh-row .d{color:var(--ink);}
+  .exh-row .d .ph{display:block;}
+  @media(max-width:900px){
+    header nav{display:none;} .burger{display:flex;}
+    .textpage{padding:120px 20px 30px 20px;}
+    .about-grid{flex-direction:column;gap:26px;} .portrait-slot{flex:none;width:200px;}
+    .ed-grid{grid-template-columns:1fr;gap:34px;}
+  }
 </style>
 </head>
 <body>
@@ -172,12 +218,27 @@
         <a href="#">Observations</a>
       </div>
     </div>
-    <a href="#">Editions</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
+    <a href="editions.html" class="">Editions</a>
+    <a href="exhibitions.html" class="">Exhibitions</a>
+    <a href="about.html" class="">About</a>
+    <a href="contact.html" class="">Contact</a>
     <span class="lang"><a href="#">FR</a><a href="#" class="active">ENG</a></span>
   </nav>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </header>
+<div class="mobile-menu" id="mobileMenu">
+  <span class="mm-label">Works</span>
+  <a class="mm-sub" href="territories.html">Territories</a>
+  <a class="mm-sub" href="origins.html">Origins</a>
+  <a class="mm-sub" href="fantasmagoria.html">Fantasmagoria</a>
+  <a class="mm-sub" href="precious-nature.html">Precious Nature</a>
+  <a class="mm-sub" href="#">Observations</a>
+  <a class="mm-top" href="editions.html">Editions</a>
+  <a class="mm-top" href="exhibitions.html">Exhibitions</a>
+  <a class="mm-top" href="about.html">About</a>
+  <a class="mm-top" href="contact.html">Contact</a>
+  <span class="mm-lang"><a href="#">FR</a><a href="#" class="active">ENG</a></span>
+</div>
 
 <section class="hero">
   <div class="proximity" id="prox" aria-label="Seed — mode proximité : survolez l'œuvre pour vous en approcher">
@@ -310,5 +371,6 @@
 })();
 </script>
 <script>(function(){var w=document.getElementById("worksMenu");if(!w)return;var t=w.querySelector("a");t.addEventListener("click",function(e){e.preventDefault();w.classList.toggle("open");});document.addEventListener("click",function(e){if(!w.contains(e.target))w.classList.remove("open");});})();</script>
+<script>(function(){var bg=document.getElementById("burger");if(bg)bg.addEventListener("click",function(){document.body.classList.toggle("menu-open");});var mm=document.getElementById("mobileMenu");if(mm)mm.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){document.body.classList.remove("menu-open");});});})();</script>
 </body>
 </html>
