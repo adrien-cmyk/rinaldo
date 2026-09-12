@@ -341,18 +341,29 @@
   });
 
   /* --- tactile : 1er toucher = approche (centre), 2e = retour --- */
-  let engaged=false, lastTap=0;
-  frame.addEventListener('touchstart', e=>{
-    const now=Date.now(); const [x,y]=pointFromEvent(e); const dt=now-lastTap; lastTap=now;
-    if(!engaged){ engaged=true; targetScale=ZOOM; tx=.5; ty=.5; kick(); return; }  // 1er tap : zoom centré
-    if(dt<300){ engaged=false; targetScale=1; tx=.5; ty=.5; kick(); return; }       // double tap : sortie
-    if(navigable){ tx=x; ty=y; kick(); }                                            // tap simple : orienter
-  }, {passive:true});
-  frame.addEventListener('touchmove', e=>{
-    if(engaged && navigable){
-      const [x,y]=pointFromEvent(e); tx=x; ty=y; kick();
-      if(e.cancelable) e.preventDefault();
-    }
+  /* --- tactile : pincement à deux doigts (zoom manuel) --- */
+  let pScale=1, pox=0, poy=0, startDist=0, startScale=1, imgAx=0, imgAy=0, panX=0, panY=0;
+  function _dist(t){ return Math.hypot(t[0].clientX-t[1].clientX, t[0].clientY-t[1].clientY); }
+  function _cen(t){ const r=frame.getBoundingClientRect(); return [ (t[0].clientX+t[1].clientX)/2 - r.left, (t[0].clientY+t[1].clientY)/2 - r.top ]; }
+  function _applyP(){ const w=frame.clientWidth, h=frame.clientHeight;
+    pox=Math.min(0, Math.max(w*(1-pScale), pox)); poy=Math.min(0, Math.max(h*(1-pScale), poy));
+    img.style.transition=''; img.style.transform='translate('+pox+'px,'+poy+'px) scale('+pScale+')'; }
+  frame.addEventListener('touchstart', ev=>{
+    const t=ev.touches;
+    if(t.length===2){ startDist=_dist(t); startScale=pScale; const c=_cen(t); imgAx=(c[0]-pox)/pScale; imgAy=(c[1]-poy)/pScale; if(ev.cancelable) ev.preventDefault(); }
+    else if(t.length===1){ const r=frame.getBoundingClientRect(); panX=t[0].clientX-r.left; panY=t[0].clientY-r.top; }
+  }, {passive:false});
+  frame.addEventListener('touchmove', ev=>{
+    const t=ev.touches;
+    if(t.length===2){ const nd=_dist(t); let ns=startDist? startScale*(nd/startDist):startScale; ns=Math.max(1, Math.min(ZOOM, ns));
+      const c=_cen(t); pScale=ns; pox=c[0]-imgAx*ns; poy=c[1]-imgAy*ns;
+      frame.style.touchAction = pScale>1.01 ? 'none' : 'pan-y'; _applyP(); if(ev.cancelable) ev.preventDefault(); }
+    else if(t.length===1 && pScale>1.01){ const r=frame.getBoundingClientRect(); const x=t[0].clientX-r.left, y=t[0].clientY-r.top;
+      pox+=x-panX; poy+=y-panY; panX=x; panY=y; _applyP(); if(ev.cancelable) ev.preventDefault(); }
+  }, {passive:false});
+  frame.addEventListener('touchend', ev=>{
+    if(ev.touches.length===1){ const r=frame.getBoundingClientRect(); panX=ev.touches[0].clientX-r.left; panY=ev.touches[0].clientY-r.top; }
+    if(ev.touches.length===0 && pScale<=1.02){ pScale=1; pox=0; poy=0; img.style.transition='transform .3s ease'; img.style.transform='translate(0,0) scale(1)'; frame.style.touchAction='pan-y'; }
   }, {passive:false});
 
   /* ----- flèche différée : ~4,5 s après l'arrivée ----- */
