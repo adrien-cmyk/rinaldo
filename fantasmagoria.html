@@ -16,7 +16,7 @@
   body{background:var(--paper);color:var(--ink);
     font-family:"Helvetica Neue","Helvetica","Arial",sans-serif;
     font-size:var(--fs);line-height:var(--lh);
-    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;}
 
   /* menu : fond blanc solide (aucun fondu/blur) */
   header{position:fixed;inset:0 0 auto 0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:30px var(--edge);background:var(--paper);}
@@ -104,8 +104,8 @@
     .discover img{opacity:1;-webkit-mask-image:none;mask-image:none;}
     .down{display:none;}
     .work{padding:5vh 20px;}
-    .work-media.wbound{width:min(560px,90vw);}
-    .work-media.hbound{height:min(600px,70vh);}
+    .work-media.wbound,.work-media.wbound.lg,.work-media.hbound{width:min(560px,calc(100vw - 2 * var(--edge)));height:auto;}
+    
     .caption-row{flex-direction:column;gap:14px;}
     .d-row{justify-content:flex-start;}
     footer{flex-direction:column;align-items:flex-start;gap:16px;padding:34px 20px 46px;}
