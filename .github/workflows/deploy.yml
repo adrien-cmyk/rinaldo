@@ -1,22 +1,29 @@
-name: Deploy to Infomaniak (FTP)
+name: Deploy (FTP → Infomaniak)
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
+    branches: [ main ]          # push => déploie DEV automatiquement
+  workflow_dispatch:            # bouton "Run workflow" => choix dev ou production
+    inputs:
+      environment:
+        description: "Cible du déploiement"
+        type: choice
+        options: [ dev, production ]
+        default: dev
 
 concurrency:
-  group: ftp-deploy
+  group: ftp-${{ github.event.inputs.environment || 'dev' }}
   cancel-in-progress: true
 
 jobs:
-  ftp-deploy:
+  # ---------- DEV : auto sur push, ou dispatch "dev" ----------
+  deploy-dev:
+    if: github.event_name == 'push' || github.event.inputs.environment == 'dev'
     runs-on: ubuntu-latest
+    environment: dev
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Deploy via FTPS
+      - uses: actions/checkout@v4
+      - name: Deploy to DEV (FTPS)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -24,7 +31,31 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ${{ secrets.FTP_SERVER_DIR || './' }}
           protocol: ftps
-          # On ne supprime jamais ces fichiers côté serveur (gérés par Infomaniak / toi)
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/.htaccess
+            **/.user.ini
+            **/.infomaniak-maintenance.html
+            **/README.md
+            **/.nojekyll
+
+  # ---------- PROD : uniquement dispatch manuel "production" ----------
+  deploy-prod:
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'production'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to PRODUCTION (FTPS)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR || './' }}
+          protocol: ftps
           exclude: |
             **/.git*
             **/.git*/**
