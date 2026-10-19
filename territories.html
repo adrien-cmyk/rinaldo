@@ -37,7 +37,7 @@
   .intro{position:relative;min-height:100vh;min-height:100svh;}
   .intro-inner{display:flex;align-items:stretch;gap:48px;padding:130px var(--edge) 0 var(--content-x);}
   .intro-text{flex:0 0 auto;width:min(30em,44%);}
-  h1{font-family:inherit;font-size:30px;font-weight:700;letter-spacing:0;line-height:var(--lh);margin-bottom:24px;}
+  h1{font-family:inherit;font-size:30px;font-weight:700;letter-spacing:0;line-height:1.12;margin-bottom:24px;}
   .intro-text p{font-family:inherit;font-size:var(--fs);line-height:var(--lh);letter-spacing:0;color:#2b2b2b;text-align:justify;hyphens:auto;-webkit-hyphens:auto;}
   .intro-text p + p{margin-top:18px;}
 
@@ -69,7 +69,7 @@
 
   /* cartel (4 lignes) : Titre (date) en gras ; dimension ; technique sur 2 lignes */
   .caption-row{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;width:100%;margin-top:22px;}
-  .cartel{line-height:var(--lh);}
+  .cartel{line-height:1.3;}
   .c-head .c-title{font-weight:700;text-transform:uppercase;letter-spacing:0;color:var(--ink);}
   .c-head .c-date{font-weight:700;color:var(--ink);}
   .c-dim,.c-tech{color:var(--muted);}
@@ -138,7 +138,7 @@
   body.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
   /* pages texte (about/contact/editions/exhibitions) */
   .textpage{padding:150px var(--edge) 40px var(--content-x);max-width:calc(var(--content-x) + 900px);}
-  .textpage h1{font-size:30px;font-weight:700;line-height:var(--lh);margin-bottom:28px;}
+  .textpage h1{font-size:30px;font-weight:700;line-height:1.12;margin-bottom:28px;}
   .about-grid{display:flex;gap:56px;align-items:flex-start;}
   .about-bio{max-width:40em;}
   .about-bio p{font-size:var(--fs);line-height:var(--lh);color:#2b2b2b;text-align:justify;hyphens:auto;-webkit-hyphens:auto;}
@@ -193,11 +193,10 @@
         <a href="observations.html">Observations</a>
       </div>
     </div>
-    <a href="editions.html" class="">Editions</a>
     <a href="exhibitions.html" class="">Exhibitions</a>
     <a href="about.html" class="">About</a>
     <a href="contact.html" class="">Contact</a>
-    <span class="lang"><a href="#">FR</a><a href="#" class="active">ENG</a></span>
+    
   </nav>
   <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </header>
@@ -208,11 +207,9 @@
   <a class="mm-sub" href="fantasmagoria.html">Fantasmagoria</a>
   <a class="mm-sub" href="precious-nature.html">Precious Nature</a>
   <a class="mm-sub" href="observations.html">Observations</a>
-  <a class="mm-top" href="editions.html">Editions</a>
   <a class="mm-top" href="exhibitions.html">Exhibitions</a>
   <a class="mm-top" href="about.html">About</a>
   <a class="mm-top" href="contact.html">Contact</a>
-  <span class="mm-lang"><a href="#">FR</a><a href="#" class="active">ENG</a></span>
 </div>
 
 <section class="intro">
@@ -232,45 +229,23 @@
 </section>
 
 <main id="works">
-  <figure class="work" id="seed">
+  <figure class="work" id="maestro">
     <div class="work-inner">
-      <div class="work-media prox wbound lg" style="--ar:3200/3149;" data-zoom="4.0" aria-label="Seed — approchez pour voir de plus près">
-        <img src="assets/seed.webp" alt="Seed — Rinaldo Marasco" draggable="false">
+      <div class="work-media prox hbound" style="--ar:1518/2400;" data-zoom="4.0" aria-label="MAESTRO — approchez pour voir de plus près">
+        <img src="assets/maestro.webp" alt="MAESTRO — Rinaldo Marasco" draggable="false">
           <div class="dot"></div>
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
-          <div class="c-head"><span class="c-title">SEED</span> <span class="c-date">(2022)</span></div>
-          <div class="c-dim">110 × 110 cm</div>
-          <div class="c-tech">Marker,</div>
-          <div class="c-tech">plant extract and acrylic</div>
+          <div class="c-head"><span class="c-title">MAESTRO</span> <span class="c-date">(2026)</span></div>
+          <div class="c-dim">100 × 160 cm</div>
+          <div class="c-tech">Ink, marker, plant extract</div>
+          <div class="c-tech">and acrylic</div>
         </figcaption>
-        <div class="d-row" data-title="Seed">
-          <button class="thumb" data-full="assets/seed-d1.webp"><img src="assets/seed-d1.webp" alt="Seed — detail 1"></button>
-          <button class="thumb" data-full="assets/seed-d2.webp"><img src="assets/seed-d2.webp" alt="Seed — detail 2"></button>
-          <button class="thumb" data-full="assets/seed-d3.webp"><img src="assets/seed-d3.webp" alt="Seed — detail 3"></button>
-        </div>
-      </div>
-    </div>
-  </figure>
-
-  <figure class="work" id="bigbang">
-    <div class="work-inner">
-      <div class="work-media prox wbound lg" style="--ar:2373/2400;" data-zoom="8.0" aria-label="Big Bang — approchez pour voir de plus près">
-        <img src="assets/bigbang.webp" alt="Big Bang — Rinaldo Marasco" draggable="false">
-          <div class="dot"></div>
-      </div>
-      <div class="caption-row">
-        <figcaption class="cartel">
-          <div class="c-head"><span class="c-title">BIG BANG</span> <span class="c-date">(2024–2025)</span></div>
-          <div class="c-dim">172 × 172 cm</div>
-          <div class="c-tech">Marker,</div>
-          <div class="c-tech">plant extract and oil on panel</div>
-        </figcaption>
-        <div class="d-row" data-title="Big Bang">
-          <button class="thumb" data-full="assets/bigbang-d1.webp"><img src="assets/bigbang-d1.webp" alt="Big Bang — detail 1"></button>
-          <button class="thumb" data-full="assets/bigbang-d2.webp"><img src="assets/bigbang-d2.webp" alt="Big Bang — detail 2"></button>
-          <button class="thumb" data-full="assets/bigbang-d3.webp"><img src="assets/bigbang-d3.webp" alt="Big Bang — detail 3"></button>
+        <div class="d-row" data-title="MAESTRO">
+          <button class="thumb" data-full="assets/maestro-d1.webp"><img src="assets/maestro-d1.webp" alt="MAESTRO — detail 1"></button>
+          <button class="thumb" data-full="assets/maestro-d2.webp"><img src="assets/maestro-d2.webp" alt="MAESTRO — detail 2"></button>
+          <button class="thumb" data-full="assets/maestro-d3.webp"><img src="assets/maestro-d3.webp" alt="MAESTRO — detail 3"></button>
         </div>
       </div>
     </div>
@@ -278,21 +253,21 @@
 
   <figure class="work" id="peace">
     <div class="work-inner">
-      <div class="work-media prox hbound" style="--ar:1787/2400;" data-zoom="4.0" aria-label="Peace — approchez pour voir de plus près">
-        <img src="assets/peace.webp" alt="Peace — Rinaldo Marasco" draggable="false">
+      <div class="work-media prox hbound" style="--ar:1787/2400;" data-zoom="4.0" aria-label="PEACE — approchez pour voir de plus près">
+        <img src="assets/peace.webp" alt="PEACE — Rinaldo Marasco" draggable="false">
           <div class="dot"></div>
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
           <div class="c-head"><span class="c-title">PEACE</span> <span class="c-date">(2026)</span></div>
           <div class="c-dim">80 × 110 cm</div>
-          <div class="c-tech">Marker,</div>
-          <div class="c-tech">acrylic and plant extract</div>
+          <div class="c-tech">Ink, plant extract</div>
+          <div class="c-tech">and acrylic</div>
         </figcaption>
-        <div class="d-row" data-title="Peace">
-          <button class="thumb" data-full="assets/peace-d1.webp"><img src="assets/peace-d1.webp" alt="Peace — detail 1"></button>
-          <button class="thumb" data-full="assets/peace-d2.webp"><img src="assets/peace-d2.webp" alt="Peace — detail 2"></button>
-          <button class="thumb" data-full="assets/peace-d3.webp"><img src="assets/peace-d3.webp" alt="Peace — detail 3"></button>
+        <div class="d-row" data-title="PEACE">
+          <button class="thumb" data-full="assets/peace-d1.webp"><img src="assets/peace-d1.webp" alt="PEACE — detail 1"></button>
+          <button class="thumb" data-full="assets/peace-d2.webp"><img src="assets/peace-d2.webp" alt="PEACE — detail 2"></button>
+          <button class="thumb" data-full="assets/peace-d3.webp"><img src="assets/peace-d3.webp" alt="PEACE — detail 3"></button>
         </div>
       </div>
     </div>
@@ -300,21 +275,65 @@
 
   <figure class="work" id="guardians">
     <div class="work-inner">
-      <div class="work-media prox wbound" style="--ar:2107/2400;" data-zoom="4.0" aria-label="The Guardians — approchez pour voir de plus près">
-        <img src="assets/guardians.webp" alt="The Guardians — Rinaldo Marasco" draggable="false">
+      <div class="work-media prox wbound" style="--ar:2107/2400;" data-zoom="4.0" aria-label="THE GUARDIANS — approchez pour voir de plus près">
+        <img src="assets/guardians.webp" alt="THE GUARDIANS — Rinaldo Marasco" draggable="false">
           <div class="dot"></div>
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
           <div class="c-head"><span class="c-title">THE GUARDIANS</span> <span class="c-date">(2025)</span></div>
           <div class="c-dim">70 × 80 cm</div>
-          <div class="c-tech">Marker,</div>
-          <div class="c-tech">plant extract and acrylic</div>
+          <div class="c-tech">Ink, marker, plant extract</div>
+          <div class="c-tech">and acrylic</div>
         </figcaption>
-        <div class="d-row" data-title="The Guardians">
-          <button class="thumb" data-full="assets/guardians-d1.webp"><img src="assets/guardians-d1.webp" alt="The Guardians — detail 1"></button>
-          <button class="thumb" data-full="assets/guardians-d2.webp"><img src="assets/guardians-d2.webp" alt="The Guardians — detail 2"></button>
-          <button class="thumb" data-full="assets/guardians-d3.webp"><img src="assets/guardians-d3.webp" alt="The Guardians — detail 3"></button>
+        <div class="d-row" data-title="THE GUARDIANS">
+          <button class="thumb" data-full="assets/guardians-d1.webp"><img src="assets/guardians-d1.webp" alt="THE GUARDIANS — detail 1"></button>
+          <button class="thumb" data-full="assets/guardians-d2.webp"><img src="assets/guardians-d2.webp" alt="THE GUARDIANS — detail 2"></button>
+          <button class="thumb" data-full="assets/guardians-d3.webp"><img src="assets/guardians-d3.webp" alt="THE GUARDIANS — detail 3"></button>
+        </div>
+      </div>
+    </div>
+  </figure>
+
+  <figure class="work" id="bigbang">
+    <div class="work-inner">
+      <div class="work-media prox wbound lg" style="--ar:2373/2400;" data-zoom="8.0" aria-label="BIG BANG — approchez pour voir de plus près">
+        <img src="assets/bigbang.webp" alt="BIG BANG — Rinaldo Marasco" draggable="false">
+          <div class="dot"></div>
+      </div>
+      <div class="caption-row">
+        <figcaption class="cartel">
+          <div class="c-head"><span class="c-title">BIG BANG</span> <span class="c-date">(2024–2025)</span></div>
+          <div class="c-dim">172 × 172 cm</div>
+          <div class="c-tech">Ink, plant extract</div>
+          <div class="c-tech">and acrylic</div>
+        </figcaption>
+        <div class="d-row" data-title="BIG BANG">
+          <button class="thumb" data-full="assets/bigbang-d1.webp"><img src="assets/bigbang-d1.webp" alt="BIG BANG — detail 1"></button>
+          <button class="thumb" data-full="assets/bigbang-d2.webp"><img src="assets/bigbang-d2.webp" alt="BIG BANG — detail 2"></button>
+          <button class="thumb" data-full="assets/bigbang-d3.webp"><img src="assets/bigbang-d3.webp" alt="BIG BANG — detail 3"></button>
+        </div>
+      </div>
+    </div>
+  </figure>
+
+  <figure class="work" id="seed">
+    <div class="work-inner">
+      <div class="work-media prox wbound lg" style="--ar:3200/3149;" data-zoom="4.0" aria-label="SEED — approchez pour voir de plus près">
+        <img src="assets/seed.webp" alt="SEED — Rinaldo Marasco" draggable="false">
+          <div class="dot"></div>
+      </div>
+      <div class="caption-row">
+        <figcaption class="cartel">
+          <div class="c-head"><span class="c-title">SEED</span> <span class="c-date">(2022)</span></div>
+          <div class="c-dim">110 × 110 cm</div>
+          <div class="c-tech">Ink, plant extract</div>
+          <div class="c-tech">and acrylic</div>
+        </figcaption>
+        <div class="d-row" data-title="SEED">
+          <button class="thumb" data-full="assets/seed-d1.webp"><img src="assets/seed-d1.webp" alt="SEED — detail 1"></button>
+          <button class="thumb" data-full="assets/seed-d2.webp"><img src="assets/seed-d2.webp" alt="SEED — detail 2"></button>
+          <button class="thumb" data-full="assets/seed-d3.webp"><img src="assets/seed-d3.webp" alt="SEED — detail 3"></button>
         </div>
       </div>
     </div>
@@ -322,43 +341,21 @@
 
   <figure class="work" id="axis">
     <div class="work-inner">
-      <div class="work-media prox hbound" style="--ar:1496/2400;" data-zoom="4.0" aria-label="Axis — approchez pour voir de plus près">
-        <img src="assets/axis.webp" alt="Axis — Rinaldo Marasco" draggable="false">
+      <div class="work-media prox hbound" style="--ar:1496/2400;" data-zoom="4.0" aria-label="AXIS — approchez pour voir de plus près">
+        <img src="assets/axis.webp" alt="AXIS — Rinaldo Marasco" draggable="false">
           <div class="dot"></div>
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
           <div class="c-head"><span class="c-title">AXIS</span> <span class="c-date">(2022)</span></div>
           <div class="c-dim">103 × 148 cm</div>
-          <div class="c-tech">Marker, oil,</div>
-          <div class="c-tech">plant extract and pigment</div>
+          <div class="c-tech">Ink, oil painting, plant extract</div>
+          <div class="c-tech">and pigment</div>
         </figcaption>
-        <div class="d-row" data-title="Axis">
-          <button class="thumb" data-full="assets/axis-d1.webp"><img src="assets/axis-d1.webp" alt="Axis — detail 1"></button>
-          <button class="thumb" data-full="assets/axis-d2.webp"><img src="assets/axis-d2.webp" alt="Axis — detail 2"></button>
-          <button class="thumb" data-full="assets/axis-d3.webp"><img src="assets/axis-d3.webp" alt="Axis — detail 3"></button>
-        </div>
-      </div>
-    </div>
-  </figure>
-
-  <figure class="work" id="maestro">
-    <div class="work-inner">
-      <div class="work-media prox hbound" style="--ar:1518/2400;" data-zoom="4.0" aria-label="Maestro — approchez pour voir de plus près">
-        <img src="assets/maestro.webp" alt="Maestro — Rinaldo Marasco" draggable="false">
-          <div class="dot"></div>
-      </div>
-      <div class="caption-row">
-        <figcaption class="cartel">
-          <div class="c-head"><span class="c-title">MAESTRO</span> <span class="c-date">(2026)</span></div>
-          <div class="c-dim">100 × 160 cm</div>
-          <div class="c-tech">Marker,</div>
-          <div class="c-tech">plant extract and acrylic</div>
-        </figcaption>
-        <div class="d-row" data-title="Maestro">
-          <button class="thumb" data-full="assets/maestro-d1.webp"><img src="assets/maestro-d1.webp" alt="Maestro — detail 1"></button>
-          <button class="thumb" data-full="assets/maestro-d2.webp"><img src="assets/maestro-d2.webp" alt="Maestro — detail 2"></button>
-          <button class="thumb" data-full="assets/maestro-d3.webp"><img src="assets/maestro-d3.webp" alt="Maestro — detail 3"></button>
+        <div class="d-row" data-title="AXIS">
+          <button class="thumb" data-full="assets/axis-d1.webp"><img src="assets/axis-d1.webp" alt="AXIS — detail 1"></button>
+          <button class="thumb" data-full="assets/axis-d2.webp"><img src="assets/axis-d2.webp" alt="AXIS — detail 2"></button>
+          <button class="thumb" data-full="assets/axis-d3.webp"><img src="assets/axis-d3.webp" alt="AXIS — detail 3"></button>
         </div>
       </div>
     </div>
@@ -367,19 +364,19 @@
   <figure class="work" id="amor">
     <div class="work-inner">
       <div class="work-media wbound" style="--ar:1297/1417;">
-        <img src="assets/amor.webp" alt="Amor — Rinaldo Marasco" draggable="false">
+        <img src="assets/amor.webp" alt="AMOR — Rinaldo Marasco">
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
           <div class="c-head"><span class="c-title">AMOR</span> <span class="c-date">(2023)</span></div>
           <div class="c-dim">103 × 148 cm</div>
-          <div class="c-tech">Marker,</div>
-          <div class="c-tech">plant extract and oil</div>
+          <div class="c-tech">Marker, plant extract</div>
+          <div class="c-tech">and oil painting</div>
         </figcaption>
-        <div class="d-row" data-title="Amor">
-          <button class="thumb" data-full="assets/amor-d1.webp"><img src="assets/amor-d1.webp" alt="Amor — detail 1"></button>
-          <button class="thumb" data-full="assets/amor-d2.webp"><img src="assets/amor-d2.webp" alt="Amor — detail 2"></button>
-          <button class="thumb" data-full="assets/amor-d3.webp"><img src="assets/amor-d3.webp" alt="Amor — detail 3"></button>
+        <div class="d-row" data-title="AMOR">
+          <button class="thumb" data-full="assets/amor-d1.webp"><img src="assets/amor-d1.webp" alt="AMOR — detail 1"></button>
+          <button class="thumb" data-full="assets/amor-d2.webp"><img src="assets/amor-d2.webp" alt="AMOR — detail 2"></button>
+          <button class="thumb" data-full="assets/amor-d3.webp"><img src="assets/amor-d3.webp" alt="AMOR — detail 3"></button>
         </div>
       </div>
     </div>
@@ -388,19 +385,19 @@
   <figure class="work" id="contigo">
     <div class="work-inner">
       <div class="work-media hbound" style="--ar:969/1417;">
-        <img src="assets/contigo.webp" alt="Contigo — Rinaldo Marasco" draggable="false">
+        <img src="assets/contigo.webp" alt="CONTIGO — Rinaldo Marasco">
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
           <div class="c-head"><span class="c-title">CONTIGO</span> <span class="c-date">(2023)</span></div>
           <div class="c-dim">50 × 77 cm</div>
-          <div class="c-tech">Marker,</div>
-          <div class="c-tech">plant extract and acrylic</div>
+          <div class="c-tech">Marker, plant extract</div>
+          <div class="c-tech">and acrylic</div>
         </figcaption>
-        <div class="d-row" data-title="Contigo">
-          <button class="thumb" data-full="assets/contigo-d1.webp"><img src="assets/contigo-d1.webp" alt="Contigo — detail 1"></button>
-          <button class="thumb" data-full="assets/contigo-d2.webp"><img src="assets/contigo-d2.webp" alt="Contigo — detail 2"></button>
-          <button class="thumb" data-full="assets/contigo-d3.webp"><img src="assets/contigo-d3.webp" alt="Contigo — detail 3"></button>
+        <div class="d-row" data-title="CONTIGO">
+          <button class="thumb" data-full="assets/contigo-d1.webp"><img src="assets/contigo-d1.webp" alt="CONTIGO — detail 1"></button>
+          <button class="thumb" data-full="assets/contigo-d2.webp"><img src="assets/contigo-d2.webp" alt="CONTIGO — detail 2"></button>
+          <button class="thumb" data-full="assets/contigo-d3.webp"><img src="assets/contigo-d3.webp" alt="CONTIGO — detail 3"></button>
         </div>
       </div>
     </div>
@@ -409,19 +406,18 @@
   <figure class="work" id="soplada">
     <div class="work-inner">
       <div class="work-media hbound" style="--ar:1075/1417;">
-        <img src="assets/soplada.webp" alt="Soplada — Rinaldo Marasco" draggable="false">
+        <img src="assets/soplada.webp" alt="SOPLADA — Rinaldo Marasco">
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
           <div class="c-head"><span class="c-title">SOPLADA</span> <span class="c-date">(2025)</span></div>
           <div class="c-dim">15 × 21 cm</div>
-          <div class="c-tech">Marker</div>
-          <div class="c-tech">and acrylic</div>
+          <div class="c-tech">Ink and plant extract</div>
         </figcaption>
-        <div class="d-row" data-title="Soplada">
-          <button class="thumb" data-full="assets/soplada-d1.webp"><img src="assets/soplada-d1.webp" alt="Soplada — detail 1"></button>
-          <button class="thumb" data-full="assets/soplada-d2.webp"><img src="assets/soplada-d2.webp" alt="Soplada — detail 2"></button>
-          <button class="thumb" data-full="assets/soplada-d3.webp"><img src="assets/soplada-d3.webp" alt="Soplada — detail 3"></button>
+        <div class="d-row" data-title="SOPLADA">
+          <button class="thumb" data-full="assets/soplada-d1.webp"><img src="assets/soplada-d1.webp" alt="SOPLADA — detail 1"></button>
+          <button class="thumb" data-full="assets/soplada-d2.webp"><img src="assets/soplada-d2.webp" alt="SOPLADA — detail 2"></button>
+          <button class="thumb" data-full="assets/soplada-d3.webp"><img src="assets/soplada-d3.webp" alt="SOPLADA — detail 3"></button>
         </div>
       </div>
     </div>
@@ -430,19 +426,19 @@
   <figure class="work" id="soplada-2">
     <div class="work-inner">
       <div class="work-media hbound" style="--ar:1138/1500;">
-        <img src="assets/soplada-2.webp" alt="Soplada 2 — Rinaldo Marasco" draggable="false">
+        <img src="assets/soplada-2.webp" alt="SOPLADA 2 — Rinaldo Marasco">
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
           <div class="c-head"><span class="c-title">SOPLADA 2</span> <span class="c-date">(2025)</span></div>
           <div class="c-dim">15 × 21 cm</div>
-          <div class="c-tech">Marker,</div>
-          <div class="c-tech">plant extract and acrylic</div>
+          <div class="c-tech">Ink, marker,</div>
+          <div class="c-tech">and acrylic</div>
         </figcaption>
-        <div class="d-row" data-title="Soplada 2">
-          <button class="thumb" data-full="assets/soplada-2-d1.webp"><img src="assets/soplada-2-d1.webp" alt="Soplada 2 — detail 1"></button>
-          <button class="thumb" data-full="assets/soplada-2-d2.webp"><img src="assets/soplada-2-d2.webp" alt="Soplada 2 — detail 2"></button>
-          <button class="thumb" data-full="assets/soplada-2-d3.webp"><img src="assets/soplada-2-d3.webp" alt="Soplada 2 — detail 3"></button>
+        <div class="d-row" data-title="SOPLADA 2">
+          <button class="thumb" data-full="assets/soplada-2-d1.webp"><img src="assets/soplada-2-d1.webp" alt="SOPLADA 2 — detail 1"></button>
+          <button class="thumb" data-full="assets/soplada-2-d2.webp"><img src="assets/soplada-2-d2.webp" alt="SOPLADA 2 — detail 2"></button>
+          <button class="thumb" data-full="assets/soplada-2-d3.webp"><img src="assets/soplada-2-d3.webp" alt="SOPLADA 2 — detail 3"></button>
         </div>
       </div>
     </div>
@@ -451,19 +447,19 @@
   <figure class="work" id="volando">
     <div class="work-inner">
       <div class="work-media hbound" style="--ar:1138/1500;">
-        <img src="assets/volando.webp" alt="Volando — Rinaldo Marasco" draggable="false">
+        <img src="assets/volando.webp" alt="VOLANDO — Rinaldo Marasco">
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
           <div class="c-head"><span class="c-title">VOLANDO</span> <span class="c-date">(2025)</span></div>
           <div class="c-dim">15 × 21 cm</div>
-          <div class="c-tech">Marker</div>
+          <div class="c-tech">Ink, marker,</div>
           <div class="c-tech">and acrylic</div>
         </figcaption>
-        <div class="d-row" data-title="Volando">
-          <button class="thumb" data-full="assets/volando-d1.webp"><img src="assets/volando-d1.webp" alt="Volando — detail 1"></button>
-          <button class="thumb" data-full="assets/volando-d2.webp"><img src="assets/volando-d2.webp" alt="Volando — detail 2"></button>
-          <button class="thumb" data-full="assets/volando-d3.webp"><img src="assets/volando-d3.webp" alt="Volando — detail 3"></button>
+        <div class="d-row" data-title="VOLANDO">
+          <button class="thumb" data-full="assets/volando-d1.webp"><img src="assets/volando-d1.webp" alt="VOLANDO — detail 1"></button>
+          <button class="thumb" data-full="assets/volando-d2.webp"><img src="assets/volando-d2.webp" alt="VOLANDO — detail 2"></button>
+          <button class="thumb" data-full="assets/volando-d3.webp"><img src="assets/volando-d3.webp" alt="VOLANDO — detail 3"></button>
         </div>
       </div>
     </div>
@@ -471,21 +467,21 @@
 
   <figure class="work" id="toma">
     <div class="work-inner">
-      <div class="work-media prox hbound" style="--ar:1290/1701;" data-zoom="4.0" aria-label="Toma — approchez pour voir de plus près">
-        <img src="assets/toma.webp" alt="Toma — Rinaldo Marasco" draggable="false">
+      <div class="work-media prox hbound" style="--ar:1290/1701;" data-zoom="4.0" aria-label="TOMA — approchez pour voir de plus près">
+        <img src="assets/toma.webp" alt="TOMA — Rinaldo Marasco" draggable="false">
           <div class="dot"></div>
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
           <div class="c-head"><span class="c-title">TOMA</span> <span class="c-date">(2025)</span></div>
           <div class="c-dim">15 × 21 cm</div>
-          <div class="c-tech">Marker</div>
+          <div class="c-tech">Ink, marker,</div>
           <div class="c-tech">and acrylic</div>
         </figcaption>
-        <div class="d-row" data-title="Toma">
-          <button class="thumb" data-full="assets/toma-d1.webp"><img src="assets/toma-d1.webp" alt="Toma — detail 1"></button>
-          <button class="thumb" data-full="assets/toma-d2.webp"><img src="assets/toma-d2.webp" alt="Toma — detail 2"></button>
-          <button class="thumb" data-full="assets/toma-d3.webp"><img src="assets/toma-d3.webp" alt="Toma — detail 3"></button>
+        <div class="d-row" data-title="TOMA">
+          <button class="thumb" data-full="assets/toma-d1.webp"><img src="assets/toma-d1.webp" alt="TOMA — detail 1"></button>
+          <button class="thumb" data-full="assets/toma-d2.webp"><img src="assets/toma-d2.webp" alt="TOMA — detail 2"></button>
+          <button class="thumb" data-full="assets/toma-d3.webp"><img src="assets/toma-d3.webp" alt="TOMA — detail 3"></button>
         </div>
       </div>
     </div>

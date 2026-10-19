@@ -37,7 +37,7 @@
   .intro{position:relative;min-height:100vh;min-height:100svh;}
   .intro-inner{display:flex;align-items:stretch;gap:48px;padding:130px var(--edge) 0 var(--content-x);}
   .intro-text{flex:0 0 auto;width:min(30em,44%);}
-  h1{font-family:inherit;font-size:30px;font-weight:700;letter-spacing:0;line-height:var(--lh);margin-bottom:24px;}
+  h1{font-family:inherit;font-size:30px;font-weight:700;letter-spacing:0;line-height:1.12;margin-bottom:24px;}
   .intro-text p{font-family:inherit;font-size:var(--fs);line-height:var(--lh);letter-spacing:0;color:#2b2b2b;text-align:justify;hyphens:auto;-webkit-hyphens:auto;}
   .intro-text p + p{margin-top:18px;}
 
@@ -56,7 +56,7 @@
   main{padding:20px 0 0;}
   .work{padding:7vh var(--edge);}
   .work-inner{width:fit-content;max-width:100%;margin:0 auto;}
-  .work-media{position:relative;aspect-ratio:var(--ar);background:var(--paper);box-shadow:0 18px 45px rgba(0,0,0,.055);}
+  .work-media{position:relative;aspect-ratio:var(--ar);background:var(--paper);box-shadow:0 24px 55px rgba(0,0,0,.11);}
   .work-media.wbound{width:min(560px,90vw);height:auto;}
   .work-media.wbound.lg{width:min(660px,92vw);}   /* Seed & Big Bang un peu plus grands */
   .work-media.hbound{height:min(680px,74vh);width:auto;}
@@ -69,7 +69,7 @@
 
   /* cartel (4 lignes) : Titre (date) en gras ; dimension ; technique sur 2 lignes */
   .caption-row{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;width:100%;margin-top:22px;}
-  .cartel{line-height:var(--lh);}
+  .cartel{line-height:1.3;}
   .c-head .c-title{font-weight:700;text-transform:uppercase;letter-spacing:0;color:var(--ink);}
   .c-head .c-date{font-weight:700;color:var(--ink);}
   .c-dim,.c-tech{color:var(--muted);}
@@ -138,7 +138,7 @@
   body.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
   /* pages texte (about/contact/editions/exhibitions) */
   .textpage{padding:150px var(--edge) 40px var(--content-x);max-width:calc(var(--content-x) + 900px);}
-  .textpage h1{font-size:30px;font-weight:700;line-height:var(--lh);margin-bottom:28px;}
+  .textpage h1{font-size:30px;font-weight:700;line-height:1.12;margin-bottom:28px;}
   .about-grid{display:flex;gap:56px;align-items:flex-start;}
   .about-bio{max-width:40em;}
   .about-bio p{font-size:var(--fs);line-height:var(--lh);color:#2b2b2b;text-align:justify;hyphens:auto;-webkit-hyphens:auto;}
@@ -193,11 +193,10 @@
         <a href="observations.html">Observations</a>
       </div>
     </div>
-    <a href="editions.html" class="">Editions</a>
     <a href="exhibitions.html" class="">Exhibitions</a>
     <a href="about.html" class="">About</a>
     <a href="contact.html" class="">Contact</a>
-    <span class="lang"><a href="#">FR</a><a href="#" class="active">ENG</a></span>
+    
   </nav>
   <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </header>
@@ -208,11 +207,9 @@
   <a class="mm-sub" href="fantasmagoria.html">Fantasmagoria</a>
   <a class="mm-sub" href="precious-nature.html">Precious Nature</a>
   <a class="mm-sub" href="observations.html">Observations</a>
-  <a class="mm-top" href="editions.html">Editions</a>
   <a class="mm-top" href="exhibitions.html">Exhibitions</a>
   <a class="mm-top" href="about.html">About</a>
   <a class="mm-top" href="contact.html">Contact</a>
-  <span class="mm-lang"><a href="#">FR</a><a href="#" class="active">ENG</a></span>
 </div>
 
 <section class="intro">
@@ -228,66 +225,65 @@
 </section>
 
 <main id="works">
-  <figure class="work">
-    <div class="work-inner">
-      <div class="work-media wbound" style="--ar:1800/1787;">
-        <img src="assets/sc-red.webp" alt="Red — Rinaldo Marasco">
-      </div>
-      <div class="caption-row">
-        <figcaption class="cartel">
-          <div class="c-head"><span class="c-title">RED</span></div>
-          <div class="c-tech" style="font-style:italic;color:#9a9a9a">[technique · dimensions à confirmer]</div>
-        </figcaption>
-        <div class="d-row" data-title="Red">
-          <button class="thumb" data-full="assets/sc-red-t1.webp"><img src="assets/sc-red-t1.webp" alt="Red — view"></button>
-          <button class="thumb" data-full="assets/sc-red-t2.webp"><img src="assets/sc-red-t2.webp" alt="Red — view"></button>
-        </div>
-      </div>
-    </div>
-  </figure>
-
-  <figure class="work">
-    <div class="work-inner">
-      <div class="work-media wbound" style="--ar:1800/1800;">
-        <img src="assets/sc-armour.webp" alt="Armour — Rinaldo Marasco">
-      </div>
-      <div class="caption-row">
-        <figcaption class="cartel">
-          <div class="c-head"><span class="c-title">ARMOUR</span> <span class="c-date">(2017)</span></div>
-          <div class="c-tech" style="font-style:italic;color:#9a9a9a">[technique · dimensions à confirmer]</div>
-        </figcaption>
-        <div class="d-row" data-title="Armour">
-          <button class="thumb" data-full="assets/sc-armour-t1.webp"><img src="assets/sc-armour-t1.webp" alt="Armour — view"></button>
-          <button class="thumb" data-full="assets/sc-armour-t2.webp"><img src="assets/sc-armour-t2.webp" alt="Armour — view"></button>
-        </div>
-      </div>
-    </div>
-  </figure>
-
-  <figure class="work">
+  <figure class="work" id="alma">
     <div class="work-inner">
       <div class="work-media hbound" style="--ar:946/1417;">
-        <img src="assets/sc-alma.webp" alt="Alma — Rinaldo Marasco">
+        <img src="assets/sc-alma.webp" alt="ALMA — Rinaldo Marasco">
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
           <div class="c-head"><span class="c-title">ALMA</span> <span class="c-date">(2015)</span></div>
-          <div class="c-tech">Wood and acrylic</div>
+          <div class="c-tech">Wood, acrylic and resin</div>
         </figcaption>
-
       </div>
     </div>
   </figure>
+
   <figure class="work" id="golden-pastek">
     <div class="work-inner">
       <div class="work-media wbound" style="--ar:1800/1202;">
-        <img src="assets/sc-golden-pastek.webp" alt="Golden Pastek — Rinaldo Marasco">
+        <img src="assets/sc-golden-pastek.webp" alt="GOLDEN PASTEK — Rinaldo Marasco">
       </div>
       <div class="caption-row">
         <figcaption class="cartel">
-          <div class="c-head"><span class="c-title">GOLDEN PASTEK</span> <span class="c-date">(2016)</span></div>
+          <div class="c-head"><span class="c-title">GOLDEN PASTEK</span> <span class="c-date">(2015)</span></div>
           <div class="c-tech">Wood and acrylic</div>
         </figcaption>
+      </div>
+    </div>
+  </figure>
+
+  <figure class="work" id="red">
+    <div class="work-inner">
+      <div class="work-media wbound" style="--ar:1800/1787;">
+        <img src="assets/sc-red.webp" alt="RED — Rinaldo Marasco">
+      </div>
+      <div class="caption-row">
+        <figcaption class="cartel">
+          <div class="c-head"><span class="c-title">RED</span> <span class="c-date">(2016)</span></div>
+          <div class="c-tech">Oil painting, golden flakes and resin</div>
+        </figcaption>
+        <div class="d-row" data-title="RED">
+          <button class="thumb" data-full="assets/sc-red-t1.webp"><img src="assets/sc-red-t1.webp" alt="RED — detail 1"></button>
+          <button class="thumb" data-full="assets/sc-red-t2.webp"><img src="assets/sc-red-t2.webp" alt="RED — detail 2"></button>
+        </div>
+      </div>
+    </div>
+  </figure>
+
+  <figure class="work" id="armour">
+    <div class="work-inner">
+      <div class="work-media wbound" style="--ar:1800/1800;">
+        <img src="assets/sc-armour.webp" alt="ARMOUR — Rinaldo Marasco">
+      </div>
+      <div class="caption-row">
+        <figcaption class="cartel">
+          <div class="c-head"><span class="c-title">ARMOUR</span> <span class="c-date">(2017)</span></div>
+          <div class="c-tech">Plexi, acrylic and carton</div>
+        </figcaption>
+        <div class="d-row" data-title="ARMOUR">
+          <button class="thumb" data-full="assets/sc-armour-t1.webp"><img src="assets/sc-armour-t1.webp" alt="ARMOUR — detail 1"></button>
+        </div>
       </div>
     </div>
   </figure>
