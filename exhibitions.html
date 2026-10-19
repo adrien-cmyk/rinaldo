@@ -158,10 +158,21 @@
   .exh-main{margin:26px 0 44px;max-width:900px;}
   .exh-main img{width:100%;height:auto;display:block;box-shadow:0 18px 45px rgba(0,0,0,.07);}
   .exh-main figcaption{margin-top:10px;font-size:13px;color:var(--muted);}
-  a.exh-row{display:grid;grid-template-columns:70px 1fr;gap:20px;padding:12px 0;border-top:1px solid var(--line);font-size:var(--fs);text-decoration:none;color:inherit;transition:padding-left .35s cubic-bezier(.22,1,.36,1);}
-  a.exh-row:last-child{border-bottom:1px solid var(--line);}
-  a.exh-row:hover{padding-left:8px;}
-  a.exh-row:hover .d{color:var(--muted);}
+  .exh-item{border-top:1px solid var(--line);}
+  .exh-item:last-child{border-bottom:1px solid var(--line);}
+  .exh-row{display:grid;grid-template-columns:70px 1fr 20px;gap:20px;align-items:baseline;padding:12px 0;font-size:var(--fs);cursor:pointer;list-style:none;transition:padding-left .35s cubic-bezier(.22,1,.36,1);}
+  .exh-row::-webkit-details-marker{display:none;}
+  .exh-row:hover{padding-left:8px;}
+  .exh-row:hover .d{color:var(--muted);}
+  .exh-row .y{color:var(--muted);}
+  .exh-row .tg{position:relative;width:12px;height:12px;justify-self:end;align-self:center;}
+  .exh-row .tg::before,.exh-row .tg::after{content:"";position:absolute;left:0;top:50%;width:12px;height:1px;background:var(--ink);transition:transform .3s ease;}
+  .exh-row .tg::after{transform:rotate(90deg);}
+  .exh-item[open] .exh-row .tg::after{transform:rotate(0deg);}
+  .exh-body{padding:4px 0 30px 90px;}
+  .exh-body .exh-main{margin:6px 0 0;}
+  .exh-todo{font-size:var(--fs);color:var(--faint);font-style:italic;}
+  @media(max-width:900px){.exh-body{padding-left:0;}.exh-row{grid-template-columns:52px 1fr 16px;gap:12px;}}
   .exh-row .y{color:var(--muted);}
   .exh-row .d{color:var(--ink);}
   .exh-row .d .ph{display:block;}
@@ -221,21 +232,50 @@
 <main class="textpage">
   <h1>Exhibitions</h1>
   <p class="lede">Rinaldo Marasco’s work has been presented in solo and group exhibitions. A selection of shows is listed below.</p>
-  <figure class="exh-main">
-    <img src="assets/exh-hall.webp" alt="SELVA — Rinaldo Marasco, exhibition view">
-    <figcaption>SELVA — Rinaldo Marasco</figcaption>
-  </figure>
   <div class="exh-group">
     <h2>Selected Solo Exhibitions</h2>
-    <a class="exh-row" href="#"><span class="y">Year</span><span class="d">Exhibition title — Venue, City, Country</span></a>
-    <a class="exh-row" href="#"><span class="y">Year</span><span class="d">Exhibition title — Venue, City, Country</span></a>
-    <a class="exh-row" href="#"><span class="y">Year</span><span class="d">Exhibition title — Venue, City, Country</span></a>
+    <details class="exh-item" open>
+      <summary class="exh-row"><span class="y">2022</span><span class="d">Selva — La Galerie Millenium, Crissier, Switzerland</span><span class="tg" aria-hidden="true"></span></summary>
+      <div class="exh-body">
+        <figure class="exh-main">
+          <img src="assets/exh-hall.webp" alt="SELVA — Rinaldo Marasco, exhibition view at La Galerie Millenium">
+          <figcaption>SELVA — La Galerie Millenium, Crissier</figcaption>
+        </figure>
+      </div>
+    </details>
+    <details class="exh-item">
+      <summary class="exh-row"><span class="y">Year</span><span class="d">Exhibition title — Venue, City, Country</span><span class="tg" aria-hidden="true"></span></summary>
+      <div class="exh-body">
+        <p class="exh-todo">Details to come.</p>
+      </div>
+    </details>
+    <details class="exh-item">
+      <summary class="exh-row"><span class="y">Year</span><span class="d">Exhibition title — Venue, City, Country</span><span class="tg" aria-hidden="true"></span></summary>
+      <div class="exh-body">
+        <p class="exh-todo">Details to come.</p>
+      </div>
+    </details>
   </div>
   <div class="exh-group">
     <h2>Selected Group Exhibitions</h2>
-    <a class="exh-row" href="#"><span class="y">Year</span><span class="d">Exhibition title — Venue, City, Country</span></a>
-    <a class="exh-row" href="#"><span class="y">Year</span><span class="d">Exhibition title — Venue, City, Country</span></a>
-    <a class="exh-row" href="#"><span class="y">Year</span><span class="d">Exhibition title — Venue, City, Country</span></a>
+    <details class="exh-item">
+      <summary class="exh-row"><span class="y">Year</span><span class="d">Exhibition title — Venue, City, Country</span><span class="tg" aria-hidden="true"></span></summary>
+      <div class="exh-body">
+        <p class="exh-todo">Details to come.</p>
+      </div>
+    </details>
+    <details class="exh-item">
+      <summary class="exh-row"><span class="y">Year</span><span class="d">Exhibition title — Venue, City, Country</span><span class="tg" aria-hidden="true"></span></summary>
+      <div class="exh-body">
+        <p class="exh-todo">Details to come.</p>
+      </div>
+    </details>
+    <details class="exh-item">
+      <summary class="exh-row"><span class="y">Year</span><span class="d">Exhibition title — Venue, City, Country</span><span class="tg" aria-hidden="true"></span></summary>
+      <div class="exh-body">
+        <p class="exh-todo">Details to come.</p>
+      </div>
+    </details>
   </div>
 </main>
 
