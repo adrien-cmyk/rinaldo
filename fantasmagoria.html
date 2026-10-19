@@ -165,6 +165,19 @@
     .about-grid{flex-direction:column;gap:26px;} .portrait-slot{flex:none;width:200px;}
     .ed-grid{grid-template-columns:1fr;gap:34px;}
   }
+
+  /* premier tableau à droite du texte d'intro (sans loupe) */
+  .intro-inner{align-items:flex-start;}
+  .intro-work{flex:1 1 auto;display:flex;flex-direction:column;align-items:flex-start;max-width:58%;}
+  .intro-work .work-media{position:relative;background:var(--paper);}
+  .intro-work .work-media.hbound{height:min(58vh,540px);width:auto;}
+  .intro-work .work-media.wbound{height:auto;width:min(480px,46vw);}
+  .intro-work .work-media img{display:block;width:100%;height:100%;object-fit:cover;}
+  .intro-work .caption-row{margin-top:18px;width:auto;}
+  @media(max-width:900px){
+    .intro-work{max-width:100%;width:100%;margin-top:18px;}
+    .intro-work .work-media.hbound,.intro-work .work-media.wbound{height:auto;width:min(420px,90vw);}
+  }
 </style>
 </head>
 <body>
@@ -218,15 +231,7 @@
       <h1>Fantasmagoria</h1>
       <p>Fantasmagoria explores the unstable space between colour, form and projection. The image is never entirely given: it is assembled by the viewer, whose imagination transforms fragments and visual tensions into personal figures, scenes and narratives.</p>
     </div>
-  </div>
-  <button class="down" id="toworks" aria-label="Scroll to works">
-    <svg width="46" height="24" viewBox="0 0 46 24" fill="none"><path d="M2 2 L23 21 L44 2" stroke-width="2.2" fill="none"/></svg>
-  </button>
-</section>
-
-<main id="works">
-  <figure class="work">
-    <div class="work-inner">
+      <figure class="intro-work">
       <div class="work-media wbound" style="--ar:1400/1400;">
         <img src="assets/fanta-daniela.webp" alt="Daniela — Rinaldo Marasco">
       </div>
@@ -237,8 +242,14 @@
           <div class="c-tech">Photography and digital composition</div>
         </figcaption>
       </div>
-    </div>
-  </figure>
+    </figure>
+  </div>
+  <button class="down" id="toworks" aria-label="Scroll to works">
+    <svg width="46" height="24" viewBox="0 0 46 24" fill="none"><path d="M2 2 L23 21 L44 2" stroke-width="2.2" fill="none"/></svg>
+  </button>
+</section>
+
+<main id="works">
 
   <figure class="work">
     <div class="work-inner">

@@ -139,12 +139,13 @@
   /* pages texte (about/contact/editions/exhibitions) */
   .textpage{padding:150px var(--edge) 40px var(--content-x);max-width:calc(var(--content-x) + 900px);}
   .textpage h1{font-size:30px;font-weight:700;line-height:1.12;margin-bottom:28px;}
+  .textpage.about{max-width:1280px;}
   .about-grid{display:flex;gap:56px;align-items:flex-start;}
-  .about-bio{max-width:40em;}
+  .about-bio{flex:0 1 40em;max-width:40em;}
   .about-bio p{font-size:var(--fs);line-height:var(--lh);color:#2b2b2b;text-align:justify;hyphens:auto;-webkit-hyphens:auto;}
   .about-bio p + p{margin-top:16px;}
-  .portrait{flex:0 0 380px;width:380px;height:auto;display:block;box-shadow:0 18px 45px rgba(0,0,0,.08);}
-  .about-film{margin-top:52px;max-width:960px;}
+  .portrait{margin-left:auto;align-self:flex-start;width:min(520px,44%);height:auto;display:block;box-shadow:0 18px 45px rgba(0,0,0,.08);}
+  .about-film{margin-top:52px;width:100%;}
   .about-film video{width:100%;height:auto;display:block;background:#000;box-shadow:0 18px 45px rgba(0,0,0,.09);}
   .about-film figcaption{margin-top:10px;font-size:13px;color:var(--faint);}
   .lede{font-size:var(--fs);line-height:var(--lh);color:#2b2b2b;max-width:46em;margin-bottom:40px;}
@@ -165,7 +166,7 @@
   @media(max-width:900px){
     header nav{display:none;} .burger{display:flex;}
     .textpage{padding:120px 20px 30px 20px;}
-    .about-grid{flex-direction:column;gap:26px;} .portrait{flex:none;width:100%;max-width:340px;}
+    .about-grid{flex-direction:column;gap:26px;} .portrait{margin-left:0;align-self:stretch;width:100%;max-width:340px;}
     .ed-grid{grid-template-columns:1fr;gap:34px;}
   }
 </style>
@@ -215,10 +216,10 @@
   <a class="mm-top" href="contact.html">Contact</a>
 </div>
 
-<main class="textpage">
+<main class="textpage about">
+  <h1>About</h1>
   <div class="about-grid">
     <div class="about-bio">
-      <h1>About</h1>
       <p>Rinaldo Marasco is a Swiss-Italian multidisciplinary artist working across drawing, sculpture and other visual forms.</p>
       <p>His work explores perception, symbolic memory and organic structures through layered compositions that evolve between immediate impact and progressive discovery.</p>
       <p>At first glance, his works often appear through a unified form, a colour or a visual tension. As the gaze remains, they gradually reveal interconnected details, autonomous fragments and internal narratives that invite multiple levels of interpretation.</p>
