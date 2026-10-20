@@ -16,8 +16,9 @@
      - retour lent et recentrage à la sortie.                       */
 
   const ZOOM      = parseFloat(frame.dataset.zoom || '2') || 2;  // 200 % par défaut (réglable dans l'admin)
-  const LATENCY   = 1700;   // 1,7 s de survol continu avant le rapprochement
-  const EASE_ZOOM = 0.0032; // approche très lente, contemplative
+  const SPEED     = (typeof rmSpeed==='function') ? rmSpeed(frame.dataset.speed || 'slow', ZOOM) : {lat:1700, ez:0.0032};
+  const LATENCY   = SPEED.lat;  // « Lente » : 1,7 s de survol continu avant le rapprochement
+  const EASE_ZOOM = SPEED.ez;   // approche contemplative (réglable dans l'admin)
   const EASE_OUT  = 0.035;  // vitesse de retour
   const EASE_PAN  = 0.055;  // inertie du regard
   const NAV_FROM  = 1.03;   // navigation dès que le zoom a débuté (recentrage au tout début seulement)

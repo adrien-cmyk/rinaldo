@@ -1,8 +1,17 @@
 /* Rinaldo Marasco — scripts communs */
-/* Mode Proximité — 1,7 s → zoom centré (par œuvre via data-zoom), navigation dès le début */
+/* Vitesses du rapprochement (réglables par œuvre dans l'admin, data-speed).
+   lat = délai de survol avant l'approche (ms) ; ez = vitesse d'approche pour un ×4.
+   Compensation : plus le grossissement est fort, plus l'approche est ralentie,
+   pour que l'œil avance au même rythme (×8 au rythme d'un ×4). */
+function rmSpeed(speed, zoom){
+  const P={slow:{lat:1700,ez:0.0016},normal:{lat:800,ez:0.0026},fast:{lat:400,ez:0.0045}};
+  const p=P[speed]||P.normal, z=Math.max(1.05,zoom||4);
+  return {lat:p.lat, ez:p.ez*Math.log(4)/Math.log(z)};
+}
+/* Mode Proximité — zoom centré (par œuvre via data-zoom / data-speed), navigation dès le début */
 function initProx(frame){
   const img=frame.querySelector('img'), dot=frame.querySelector('.dot');
-  const ZOOM=parseFloat(frame.dataset.zoom||'4'), LAT=800, EZ=0.0026, EO=0.035, EP=0.055, NAV=1.03;
+  const ZOOM=parseFloat(frame.dataset.zoom||'4'), SP=rmSpeed(frame.dataset.speed||'normal',ZOOM), LAT=SP.lat, EZ=SP.ez, EO=0.035, EP=0.055, NAV=1.03;
   let inside=false,timer=null,nav=false,scale=1,tScale=1,px=.5,py=.5,tx=.5,ty=.5,raf=false;
   function loop(){
     const e=(tScale>scale)?EZ:EO; scale+=(tScale-scale)*e;

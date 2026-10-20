@@ -173,6 +173,7 @@
   }
 
   /* ============================================================ WORKS == */
+  const SPEEDS = [["slow", "Approche lente"], ["normal", "Approche normale"], ["fast", "Approche rapide"]];
   const ZOOMS = [[0, "Sans loupe"], [2, "Loupe ×2"], [3, "Loupe ×3"], [4, "Loupe ×4"], [6, "Loupe ×6"], [8, "Loupe ×8"]];
 
   function workRow(w, ser) {
@@ -194,7 +195,10 @@
     $(".a", r).append(field(w, "title", "Titre"), field(w, "date", "Année", { ph: "2024" }), field(w, "dim", "Dimensions", { ph: "100 × 100 cm" }));
     $(".b", r).append(field(w, "tech", "Technique (une ligne par ligne du cartel)", { area: true, rows: 2, lines: true }));
     const opts = $(".work__opts", r);
-    const z = select(w, "zoom", "", ZOOMS); z.style.margin = "0"; opts.appendChild(z);
+    w.speed = w.speed || "normal";
+    const sp = select(w, "speed", "", SPEEDS); sp.style.margin = "0";
+    const z = select(w, "zoom", "", ZOOMS, v => { sp.hidden = !v; }); z.style.margin = "0";
+    sp.hidden = !w.zoom; opts.append(z, sp);
     const lg = el(`<label class="check"><input type="checkbox"> Grand format</label>`);
     $("input", lg).checked = !!w.large; $("input", lg).addEventListener("change", e => { w.large = e.target.checked; markDirty(); });
     opts.appendChild(lg);
@@ -379,7 +383,8 @@
     const p = el(`<section class="panel" data-panel="home"><div class="card"><h2>Page d'accueil</h2>
       <p class="hint">L'œuvre plein écran de l'accueil. Au survol prolongé, le visiteur s'en approche (loupe).</p><div class="g2 t"></div></div></section>`);
     const right = el(`<div></div>`);
-    right.append(field(h, "title", "Titre de l'œuvre"), select(h, "zoom", "Rapprochement", [[1.5, "×1,5"], [2, "×2"], [3, "×3"], [4, "×4"]]));
+    right.append(field(h, "title", "Titre de l'œuvre"), select(h, "zoom", "Rapprochement", [[1.5, "×1,5"], [2, "×2"], [3, "×3"], [4, "×4"]]),
+      (h.speed = h.speed || "slow", select(h, "speed", "Vitesse", SPEEDS)));
     $(".t", p).append(picker(h, "image", { wide: true, dims: true }), right);
     return p;
   }

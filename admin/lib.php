@@ -131,6 +131,7 @@ function normalize(array $p): array {
         'w'     => max(1, (int)($hm['w'] ?? 1)),
         'h'     => max(1, (int)($hm['h'] ?? 1)),
         'zoom'  => max(1.0, min(10.0, (float)($hm['zoom'] ?? 2))),
+        'speed' => opt($hm['speed'] ?? '', ['slow', 'normal', 'fast'], 'slow'),
     ];
 
     $d['series'] = [];
@@ -167,6 +168,7 @@ function normalize(array $p): array {
                 'w'      => max(1, (int)($w['w'] ?? 1)),
                 'h'      => max(1, (int)($w['h'] ?? 1)),
                 'zoom'   => max(0.0, min(10.0, (float)($w['zoom'] ?? 0))),
+                'speed'  => opt($w['speed'] ?? '', ['slow', 'normal', 'fast'], 'normal'),
                 'large'  => !empty($w['large']),
                 'thumbs' => media_list($w['thumbs'] ?? [], 24),
             ];

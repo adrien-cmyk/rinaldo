@@ -7,7 +7,7 @@ $t = (string)($home['title'] ?? '');
 page_head(($d['site']['name'] ?? 'Rinaldo Marasco'), '', 'assets/home.css');
 site_header($d); ?>
 <section class="hero">
-  <div class="proximity" id="prox" data-zoom="<?= h(number_format((float)($home['zoom'] ?? 2), 1, '.', '')) ?>" aria-label="<?= h($t) ?> — mode proximité : survolez l'œuvre pour vous en approcher">
+  <div class="proximity" id="prox" data-zoom="<?= h(number_format((float)($home['zoom'] ?? 2), 1, '.', '')) ?>" data-speed="<?= h($home['speed'] ?? 'slow') ?>" aria-label="<?= h($t) ?> — mode proximité : survolez l'œuvre pour vous en approcher">
     <img id="artwork" src="<?= h(src($home['image'] ?? '')) ?>" alt="<?= h($t) ?> — Rinaldo Marasco" draggable="false">
     <div class="dot" id="dot"></div>
   </div>
@@ -22,7 +22,7 @@ site_header($d); ?>
   <a href="about.php">About</a>
   <a href="contact.php">Contact</a>
 </section>
-<script src="<?= h(asset_v('assets/home.js')) ?>"></script>
 <script src="<?= h(asset_v('assets/site.js')) ?>"></script>
+<script src="<?= h(asset_v('assets/home.js')) ?>"></script>
 </body>
 </html>
