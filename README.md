@@ -1,34 +1,40 @@
-# Rinaldo Marasco — Website prototype
+# Rinaldo Marasco — Website
 
-Static prototype. No build step: open `index.html`, or serve the folder on GitHub Pages.
+PHP site (PHP 8.1+) with a small CMS in `/admin`. Deployed by GitHub Actions over FTP
+(dev: automatic on push to `main`; production: manual "Run workflow → production").
 
-## Pages
-- `index.html` — Home. Single work with **Mode Proximité** (hover: after 1.7 s the
-  image slowly draws closer from the centre up to 200 %; once the zoom has started
-  you can move around inside it; slow return on exit). Arrow scrolls to the menu.
-- `territories.html` — The *Territories* section: intro text + the 12 works.
-  - Each work carries **Mode Proximité**, except the four **NoZoom** pieces
-    (Contigo, Soplada, Soplada 2, Volando).
-  - Captions follow the catalogue (dimensions converted mm → cm; "Ink" shown as
-    "Marker"). Collection shown only where known (Big Bang).
-  - Under each work: **detail thumbnails** that open in a **lightbox**.
-  - Intro right-hand white area: **discover.webp** revealed only under the cursor
-    (a "flashlight" hover effect).
+## CMS (`/admin`)
+- First visit to `/admin/` asks to **create the password** (≥ 10 chars). Only its hash is
+  stored, in `rinaldo-content/auth.json` — never in this repo. To reset it, delete that file by FTP.
+- Editable: Works series (menu pages: add / delete / drag to reorder / "sort by year"),
+  works (title, year, dimensions, technique lines, image, zoom, large, detail thumbnails),
+  Exhibitions, About (text, portrait, film), Contact, home image, footer.
+- Uploaded images are resized to 2400 px max and converted to WebP.
 
-## ⚠️ discover.webp
-`assets/discover.webp` is a **placeholder**. Replace it with the real image —
-same path, same name — and the flashlight effect will use it as-is.
-
-## Structure
+## Where the content lives
+Content is **not in git** (a push would overwrite the client's edits). It lives in a folder
+shared by the dev and production sites, next to `sites/`:
 ```
-index.html
-territories.html
-assets/
-  <work>.webp            display / zoom master (e.g. seed, bigbang, …)
-  <work>-d1/-d2/-d3.webp detail crops (lightbox)
-  discover.webp           placeholder — replace
+<hosting root>/rinaldo-content/
+  content.json        all texts + order (created on first save)
+  media/              images / videos uploaded in the admin (served by media.php)
+  backups/            the last 30 versions of content.json
+  auth.json           admin password hash
 ```
+Until the first save, the site renders `data/seed.json`. If the shared folder isn't
+reachable, the site falls back to `<site>/content/` (shown in Admin → Réglages).
+A local `content-path.php` (`<?php return '/abs/path';`) can force another location — handy for
+`php -S localhost:8080` testing. Both are git-ignored and excluded from deploy.
 
+## Code map
+- `index.php`, `works.php?s=<slug>`, `exhibitions.php`, `about.php`, `contact.php` — public pages
+- `inc/core.php` (content + helpers), `inc/layout.php` (header, menu, footer, cartels)
+- `assets/site.css|js`, `assets/home.css|js` — styles and scripts
+- old `*.html` URLs redirect to the PHP pages
+
+---
+
+## Design notes (from the static prototype)
 ## Typography
 Helvetica Neue. Body text is 16px (desktop and mobile). Letter-spacing is used
 **only** in the menu; titles and captions have none. Captions align to the "R"

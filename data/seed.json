@@ -1,0 +1,1235 @@
+{
+ "site": {
+  "name": "Rinaldo Marasco",
+  "copyright": "© Rinaldo Marasco"
+ },
+ "home": {
+  "image": "assets/seed.webp",
+  "title": "Seed",
+  "w": 3200,
+  "h": 3149,
+  "zoom": 2.0
+ },
+ "series": [
+  {
+   "id": "territories",
+   "slug": "territories",
+   "title": "Territories",
+   "intro": [
+    "Territories brings together the works that define the current language of Rinaldo Marasco.",
+    "Each composition begins with a simple, recognisable form — a circle, a heart, a figure, a gesture. From a distance, the image appears immediate and almost self-evident. As the gaze lingers, it gradually unfolds into an intricate ecosystem of interconnected forms, autonomous details and hidden narratives.",
+    "Developed through an intuitive and accumulative process, without preliminary drawing or predetermined composition, these works emerge progressively. Forms appear, connect and evolve according to their own internal logic, revealing visual territories where perception continuously shifts between the whole and its countless fragments.",
+    "Rather than illustrating a subject, Territories invites the viewer to experience a gradual transformation of perception. Meaning is never imposed. It emerges through attention, curiosity and time."
+   ],
+   "layout": "loupe",
+   "shadow": "normal",
+   "works": [
+    {
+     "id": "maestro",
+     "title": "Maestro",
+     "date": "2026",
+     "dim": "100 × 160 cm",
+     "tech": [
+      "Ink, marker, plant extract",
+      "and acrylic"
+     ],
+     "image": "assets/maestro.webp",
+     "w": 1518,
+     "h": 2400,
+     "zoom": 4.0,
+     "large": false,
+     "thumbs": [
+      "assets/maestro-d1.webp",
+      "assets/maestro-d2.webp",
+      "assets/maestro-d3.webp"
+     ]
+    },
+    {
+     "id": "peace",
+     "title": "Peace",
+     "date": "2026",
+     "dim": "80 × 110 cm",
+     "tech": [
+      "Ink, plant extract",
+      "and acrylic"
+     ],
+     "image": "assets/peace.webp",
+     "w": 1787,
+     "h": 2400,
+     "zoom": 4.0,
+     "large": false,
+     "thumbs": [
+      "assets/peace-d1.webp",
+      "assets/peace-d2.webp",
+      "assets/peace-d3.webp"
+     ]
+    },
+    {
+     "id": "guardians",
+     "title": "The Guardians",
+     "date": "2025",
+     "dim": "70 × 80 cm",
+     "tech": [
+      "Ink, marker, plant extract",
+      "and acrylic"
+     ],
+     "image": "assets/guardians.webp",
+     "w": 2107,
+     "h": 2400,
+     "zoom": 4.0,
+     "large": false,
+     "thumbs": [
+      "assets/guardians-d1.webp",
+      "assets/guardians-d2.webp",
+      "assets/guardians-d3.webp"
+     ]
+    },
+    {
+     "id": "bigbang",
+     "title": "Big Bang",
+     "date": "2024–2025",
+     "dim": "172 × 172 cm",
+     "tech": [
+      "Ink, plant extract",
+      "and acrylic"
+     ],
+     "image": "assets/bigbang.webp",
+     "w": 2373,
+     "h": 2400,
+     "zoom": 8.0,
+     "large": true,
+     "thumbs": [
+      "assets/bigbang-d1.webp",
+      "assets/bigbang-d2.webp",
+      "assets/bigbang-d3.webp"
+     ]
+    },
+    {
+     "id": "seed",
+     "title": "Seed",
+     "date": "2022",
+     "dim": "110 × 110 cm",
+     "tech": [
+      "Ink, plant extract",
+      "and acrylic"
+     ],
+     "image": "assets/seed.webp",
+     "w": 3200,
+     "h": 3149,
+     "zoom": 4.0,
+     "large": true,
+     "thumbs": [
+      "assets/seed-d1.webp",
+      "assets/seed-d2.webp",
+      "assets/seed-d3.webp"
+     ]
+    },
+    {
+     "id": "soplada",
+     "title": "Soplada",
+     "date": "2025",
+     "dim": "15 × 21 cm",
+     "tech": [
+      "Ink and plant extract"
+     ],
+     "image": "assets/soplada.webp",
+     "w": 1075,
+     "h": 1417,
+     "zoom": 0,
+     "large": false,
+     "thumbs": [
+      "assets/soplada-d1.webp",
+      "assets/soplada-d2.webp",
+      "assets/soplada-d3.webp"
+     ]
+    },
+    {
+     "id": "soplada-2",
+     "title": "Soplada 2",
+     "date": "2025",
+     "dim": "15 × 21 cm",
+     "tech": [
+      "Ink, marker,",
+      "and acrylic"
+     ],
+     "image": "assets/soplada-2.webp",
+     "w": 1138,
+     "h": 1500,
+     "zoom": 0,
+     "large": false,
+     "thumbs": [
+      "assets/soplada-2-d1.webp",
+      "assets/soplada-2-d2.webp",
+      "assets/soplada-2-d3.webp"
+     ]
+    },
+    {
+     "id": "volando",
+     "title": "Volando",
+     "date": "2025",
+     "dim": "15 × 21 cm",
+     "tech": [
+      "Ink, marker,",
+      "and acrylic"
+     ],
+     "image": "assets/volando.webp",
+     "w": 1138,
+     "h": 1500,
+     "zoom": 0,
+     "large": false,
+     "thumbs": [
+      "assets/volando-d1.webp",
+      "assets/volando-d2.webp",
+      "assets/volando-d3.webp"
+     ]
+    },
+    {
+     "id": "toma",
+     "title": "Toma",
+     "date": "2025",
+     "dim": "15 × 21 cm",
+     "tech": [
+      "Ink, marker,",
+      "and acrylic"
+     ],
+     "image": "assets/toma.webp",
+     "w": 1290,
+     "h": 1701,
+     "zoom": 4.0,
+     "large": false,
+     "thumbs": [
+      "assets/toma-d1.webp",
+      "assets/toma-d2.webp",
+      "assets/toma-d3.webp"
+     ]
+    },
+    {
+     "id": "amor",
+     "title": "Amor",
+     "date": "2023",
+     "dim": "103 × 148 cm",
+     "tech": [
+      "Marker, plant extract",
+      "and oil painting"
+     ],
+     "image": "assets/amor.webp",
+     "w": 1297,
+     "h": 1417,
+     "zoom": 0,
+     "large": false,
+     "thumbs": [
+      "assets/amor-d1.webp",
+      "assets/amor-d2.webp",
+      "assets/amor-d3.webp"
+     ]
+    },
+    {
+     "id": "contigo",
+     "title": "Contigo",
+     "date": "2023",
+     "dim": "50 × 77 cm",
+     "tech": [
+      "Marker, plant extract",
+      "and acrylic"
+     ],
+     "image": "assets/contigo.webp",
+     "w": 969,
+     "h": 1417,
+     "zoom": 0,
+     "large": false,
+     "thumbs": [
+      "assets/contigo-d1.webp",
+      "assets/contigo-d2.webp",
+      "assets/contigo-d3.webp"
+     ]
+    },
+    {
+     "id": "axis",
+     "title": "Axis",
+     "date": "2022",
+     "dim": "103 × 148 cm",
+     "tech": [
+      "Ink, oil painting, plant extract",
+      "and pigment"
+     ],
+     "image": "assets/axis.webp",
+     "w": 1496,
+     "h": 2400,
+     "zoom": 4.0,
+     "large": false,
+     "thumbs": [
+      "assets/axis-d1.webp",
+      "assets/axis-d2.webp",
+      "assets/axis-d3.webp"
+     ]
+    }
+   ],
+   "discover": "assets/discover.webp"
+  },
+  {
+   "id": "origins",
+   "slug": "origins",
+   "title": "Origins",
+   "intro": [
+    "Origins traces the emergence of a visual language initially shaped by the memory of the forest. Vegetal forms, figures and interconnected structures gradually move beyond landscape, becoming autonomous systems in which observation, memory and imagination begin to merge."
+   ],
+   "layout": "hero",
+   "shadow": "normal",
+   "works": [
+    {
+     "id": "paso-doble",
+     "title": "Paso doble",
+     "date": "2022",
+     "dim": "29,7 × 42 cm",
+     "tech": [
+      "Marker"
+     ],
+     "image": "assets/or-paso-doble.webp",
+     "w": 1159,
+     "h": 1417,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "el-circulo",
+     "title": "El circulo de la vida",
+     "date": "2021",
+     "dim": "29,7 × 42 cm",
+     "tech": [
+      "Marker"
+     ],
+     "image": "assets/or-el-circulo.webp",
+     "w": 1159,
+     "h": 1417,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "maestro-amoroso",
+     "title": "Maestro Amoroso",
+     "date": "2021",
+     "dim": "29,7 × 42 cm",
+     "tech": [
+      "Marker"
+     ],
+     "image": "assets/or-maestro-amoroso.webp",
+     "w": 1159,
+     "h": 1417,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "meraya",
+     "title": "Meraya",
+     "date": "2021",
+     "dim": "29,7 × 42 cm",
+     "tech": [
+      "Ink"
+     ],
+     "image": "assets/or-meraya.webp",
+     "w": 1159,
+     "h": 1417,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "labirinto",
+     "title": "Labirinto",
+     "date": "2021",
+     "dim": "29,7 × 42 cm",
+     "tech": [
+      "Marker"
+     ],
+     "image": "assets/or-labirinto.webp",
+     "w": 1636,
+     "h": 2000,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "aguilas",
+     "title": "Aguilas",
+     "date": "2021",
+     "dim": "29,7 × 42 cm",
+     "tech": [
+      "Marker"
+     ],
+     "image": "assets/or-aguilas.webp",
+     "w": 1636,
+     "h": 2000,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "roni-3",
+     "title": "Roni 3",
+     "date": "2021",
+     "dim": "29,7 × 42 cm",
+     "tech": [
+      "Marker"
+     ],
+     "image": "assets/or-roni-3.webp",
+     "w": 1159,
+     "h": 1417,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "renaco",
+     "title": "Renaco",
+     "date": "2020",
+     "dim": "29,7 × 42 cm",
+     "tech": [
+      "Ink"
+     ],
+     "image": "assets/or-renaco.webp",
+     "w": 1159,
+     "h": 1417,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "farmacia",
+     "title": "Farmacia",
+     "date": "2020",
+     "dim": "29,7 × 42 cm",
+     "tech": [
+      "Ink"
+     ],
+     "image": "assets/or-farmacia.webp",
+     "w": 1159,
+     "h": 1417,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "espiritus",
+     "title": "Espiritus",
+     "date": "2020",
+     "dim": "29,7 × 42 cm",
+     "tech": [
+      "Ink"
+     ],
+     "image": "assets/or-espiritus.webp",
+     "w": 1159,
+     "h": 1417,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "danza",
+     "title": "Danza",
+     "date": "2020",
+     "dim": "29,7 × 42 cm",
+     "tech": [
+      "Marker"
+     ],
+     "image": "assets/or-danza.webp",
+     "w": 1159,
+     "h": 1417,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ronis2",
+     "title": "2Ronis",
+     "date": "2020",
+     "dim": "29,7 × 42 cm",
+     "tech": [
+      "Ink"
+     ],
+     "image": "assets/or-ronis2.webp",
+     "w": 1159,
+     "h": 1417,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "bobinsana",
+     "title": "Bobinsana",
+     "date": "2020",
+     "dim": "29,7 × 42 cm",
+     "tech": [
+      "Ink"
+     ],
+     "image": "assets/or-bobinsana.webp",
+     "w": 1159,
+     "h": 1417,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "corazon2",
+     "title": "Corazon 2",
+     "date": "2020",
+     "dim": "29,7 × 42 cm",
+     "tech": [
+      "Ink"
+     ],
+     "image": "assets/or-corazon2.webp",
+     "w": 1636,
+     "h": 2000,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "tortugas",
+     "title": "Tortugas",
+     "date": "2020",
+     "dim": "29,7 × 42 cm",
+     "tech": [
+      "Ink"
+     ],
+     "image": "assets/or-tortugas.webp",
+     "w": 1636,
+     "h": 2000,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "innercircle",
+     "title": "Innercircle",
+     "date": "2020",
+     "dim": "29,7 × 42 cm",
+     "tech": [
+      "Inks and Marker"
+     ],
+     "image": "assets/or-innercircle.webp",
+     "w": 1636,
+     "h": 2000,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "jaguar",
+     "title": "Jaguar",
+     "date": "2019",
+     "dim": "29,7 × 42 cm",
+     "tech": [
+      "Ink"
+     ],
+     "image": "assets/or-jaguar.webp",
+     "w": 1159,
+     "h": 1417,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "corazon",
+     "title": "Corazon",
+     "date": "2019",
+     "dim": "29,7 × 42 cm",
+     "tech": [
+      "Ink"
+     ],
+     "image": "assets/or-corazon.webp",
+     "w": 1159,
+     "h": 1417,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "palovolador",
+     "title": "Palovolador",
+     "date": "2018",
+     "dim": "21 × 29 cm",
+     "tech": [
+      "Ink"
+     ],
+     "image": "assets/or-palovolador.webp",
+     "w": 1516,
+     "h": 2000,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "roni",
+     "title": "Roni",
+     "date": "2017",
+     "dim": "21 × 29,7 cm",
+     "tech": [
+      "Ink"
+     ],
+     "image": "assets/or-roni.webp",
+     "w": 1517,
+     "h": 2000,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "bara",
+     "title": "Bara",
+     "date": "2017",
+     "dim": "21 × 29,7 cm",
+     "tech": [
+      "Ink"
+     ],
+     "image": "assets/or-bara.webp",
+     "w": 1516,
+     "h": 2000,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "primero",
+     "title": "Primero",
+     "date": "2017",
+     "dim": "21 × 29,7 cm",
+     "tech": [
+      "Ink"
+     ],
+     "image": "assets/or-primero.webp",
+     "w": 1075,
+     "h": 1417,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    }
+   ]
+  },
+  {
+   "id": "fantasmagoria",
+   "slug": "fantasmagoria",
+   "title": "Fantasmagoria",
+   "intro": [
+    "Fantasmagoria explores the unstable space between colour, form and projection. The image is never entirely given: it is assembled by the viewer, whose imagination transforms fragments and visual tensions into personal figures, scenes and narratives."
+   ],
+   "layout": "hero",
+   "shadow": "strong",
+   "works": [
+    {
+     "id": "sylvia",
+     "title": "Sylvia",
+     "date": "2004",
+     "dim": "110 × 110 cm",
+     "tech": [
+      "Photography and digital composition"
+     ],
+     "image": "assets/fanta-sylvia.webp",
+     "w": 1400,
+     "h": 1400,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "vicky",
+     "title": "Vicky",
+     "date": "2003",
+     "dim": "110 × 110 cm",
+     "tech": [
+      "Photography and digital composition"
+     ],
+     "image": "assets/fanta-vicky.webp",
+     "w": 1400,
+     "h": 1400,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "lynn",
+     "title": "Lynn",
+     "date": "2003",
+     "dim": "110 × 110 cm",
+     "tech": [
+      "Photography and digital composition"
+     ],
+     "image": "assets/fanta-lynn.webp",
+     "w": 1400,
+     "h": 1400,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "julie",
+     "title": "Julie",
+     "date": "2002",
+     "dim": "110 × 110 cm",
+     "tech": [
+      "Photography and digital composition"
+     ],
+     "image": "assets/fanta-julie.webp",
+     "w": 1400,
+     "h": 1400,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "daniela",
+     "title": "Daniela",
+     "date": "2001",
+     "dim": "110 × 110 cm",
+     "tech": [
+      "Photography and digital composition"
+     ],
+     "image": "assets/fanta-daniela.webp",
+     "w": 1400,
+     "h": 1400,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "anita",
+     "title": "Anita",
+     "date": "2001",
+     "dim": "110 × 110 cm",
+     "tech": [
+      "Photography and digital composition"
+     ],
+     "image": "assets/fanta-anita.webp",
+     "w": 1400,
+     "h": 1400,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "darmli",
+     "title": "Darmli",
+     "date": "2001",
+     "dim": "110 × 110 cm",
+     "tech": [
+      "Photography and digital composition"
+     ],
+     "image": "assets/fanta-darmli.webp",
+     "w": 1400,
+     "h": 1400,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "julia",
+     "title": "Julia",
+     "date": "",
+     "dim": "110 × 110 cm",
+     "tech": [
+      "Photography and digital composition"
+     ],
+     "image": "assets/fanta-julia.webp",
+     "w": 1400,
+     "h": 1400,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "laura",
+     "title": "Laura",
+     "date": "",
+     "dim": "110 × 110 cm",
+     "tech": [
+      "Photography and digital composition"
+     ],
+     "image": "assets/fanta-laura.webp",
+     "w": 1400,
+     "h": 1400,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    }
+   ]
+  },
+  {
+   "id": "precious-nature",
+   "slug": "precious-nature",
+   "title": "Precious Nature",
+   "intro": [
+    "Ongoing sculptural research."
+   ],
+   "layout": "hero",
+   "shadow": "medium",
+   "works": [
+    {
+     "id": "armour",
+     "title": "Armour",
+     "date": "2017",
+     "dim": "",
+     "tech": [
+      "Plexi, acrylic",
+      "and carton"
+     ],
+     "image": "assets/sc-armour.webp",
+     "w": 1800,
+     "h": 1800,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "spiky",
+     "title": "Spiky",
+     "date": "2017",
+     "dim": "",
+     "tech": [
+      "Plexi and acrylic"
+     ],
+     "image": "assets/sc-spiky.webp",
+     "w": 1500,
+     "h": 1576,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "red",
+     "title": "Red",
+     "date": "2016",
+     "dim": "",
+     "tech": [
+      "Oil painting, golden flakes",
+      "and resin"
+     ],
+     "image": "assets/sc-red.webp",
+     "w": 1800,
+     "h": 1787,
+     "zoom": 0,
+     "large": false,
+     "thumbs": [
+      "assets/sc-red-t1.webp",
+      "assets/sc-red-t2.webp"
+     ]
+    },
+    {
+     "id": "alma",
+     "title": "Alma",
+     "date": "2015",
+     "dim": "",
+     "tech": [
+      "Wood, acrylic",
+      "and resin"
+     ],
+     "image": "assets/sc-alma.webp",
+     "w": 946,
+     "h": 1417,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "golden-pastek",
+     "title": "Golden Pastek",
+     "date": "2015",
+     "dim": "",
+     "tech": [
+      "Wood and acrylic"
+     ],
+     "image": "assets/sc-golden-pastek.webp",
+     "w": 1800,
+     "h": 1202,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    }
+   ]
+  },
+  {
+   "id": "observations",
+   "slug": "observations",
+   "title": "Observations",
+   "intro": [
+    "Observations gathers fragments encountered through attention: structures, presences, materials and moments isolated from their original context. These images do not document a subject. They reveal recurring ways of seeing and form part of the broader visual memory from which the work develops."
+   ],
+   "layout": "hero",
+   "shadow": "normal",
+   "works": [
+    {
+     "id": "apparition",
+     "title": "Apparition",
+     "date": "2018",
+     "dim": "",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-apparition.webp",
+     "w": 1600,
+     "h": 1600,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ob-nightpath",
+     "title": "Nightpath",
+     "date": "2017",
+     "dim": "",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-nightpath.webp",
+     "w": 1572,
+     "h": 1600,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ob-red-line",
+     "title": "The Red Line",
+     "date": "2016",
+     "dim": "",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-red-line.webp",
+     "w": 1600,
+     "h": 1532,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ob-bahamas",
+     "title": "Bahamas",
+     "date": "2016",
+     "dim": "",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-bahamas.webp",
+     "w": 1600,
+     "h": 1067,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ob-nuefenen",
+     "title": "Nuefenen",
+     "date": "2015",
+     "dim": "",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-nuefenen.webp",
+     "w": 1600,
+     "h": 1067,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ob-evelinn",
+     "title": "Evelinn Trouble",
+     "date": "2015",
+     "dim": "Singer",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-evelinn.webp",
+     "w": 1600,
+     "h": 1600,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ob-estelle",
+     "title": "Estelle Meyer",
+     "date": "2014",
+     "dim": "Actress",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-estelle.webp",
+     "w": 1600,
+     "h": 1600,
+     "zoom": 0,
+     "large": false,
+     "thumbs": [
+      "assets/ob-estelle-t1.webp",
+      "assets/ob-estelle-t2.webp"
+     ]
+    },
+    {
+     "id": "ob-unknown",
+     "title": "Unknown",
+     "date": "2014",
+     "dim": "",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-unknown.webp",
+     "w": 940,
+     "h": 617,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ob-shanghai",
+     "title": "Shanghai",
+     "date": "2013",
+     "dim": "",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-shanghai.webp",
+     "w": 1600,
+     "h": 1067,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ob-dont-be-squared",
+     "title": "Don't Be Squared",
+     "date": "2013",
+     "dim": "",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-dont-be-squared.webp",
+     "w": 1600,
+     "h": 1067,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ob-ghosts",
+     "title": "Ghosts",
+     "date": "2013",
+     "dim": "",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-ghosts.webp",
+     "w": 1247,
+     "h": 1600,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ob-lausanne",
+     "title": "Lausanne",
+     "date": "2013",
+     "dim": "",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-lausanne.webp",
+     "w": 1136,
+     "h": 1600,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ob-anna-aaron",
+     "title": "Anna Aaron",
+     "date": "2013",
+     "dim": "Singer",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-anna-aaron.webp",
+     "w": 1600,
+     "h": 1600,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ob-oriana",
+     "title": "Oriana Cereghetti",
+     "date": "2013",
+     "dim": "Dancer",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-oriana.webp",
+     "w": 640,
+     "h": 640,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ob-mali",
+     "title": "Mali Van Valenberg",
+     "date": "2012",
+     "dim": "Actress",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-mali.webp",
+     "w": 1600,
+     "h": 1600,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ob-shine",
+     "title": "Shine",
+     "date": "2010",
+     "dim": "",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-shine.webp",
+     "w": 1600,
+     "h": 1067,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ob-sevilla",
+     "title": "Sevilla",
+     "date": "2010",
+     "dim": "",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-sevilla.webp",
+     "w": 1600,
+     "h": 1067,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ob-eyes",
+     "title": "Eyes",
+     "date": "2010",
+     "dim": "",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-eyes.webp",
+     "w": 1600,
+     "h": 1600,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ob-idols",
+     "title": "Idols",
+     "date": "2010",
+     "dim": "",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-idols.webp",
+     "w": 1600,
+     "h": 1600,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ob-cuba",
+     "title": "Cuba",
+     "date": "2010",
+     "dim": "",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-cuba.webp",
+     "w": 1600,
+     "h": 1062,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "ob-depression",
+     "title": "Depression",
+     "date": "2001",
+     "dim": "80 × 50 cm",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-depression.webp",
+     "w": 1200,
+     "h": 842,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    },
+    {
+     "id": "sarah",
+     "title": "Sarah",
+     "date": "1994",
+     "dim": "",
+     "tech": [
+      "Photography"
+     ],
+     "image": "assets/ob-sarah.webp",
+     "w": 1600,
+     "h": 1156,
+     "zoom": 0,
+     "large": false,
+     "thumbs": []
+    }
+   ]
+  }
+ ],
+ "exhibitions": {
+  "title": "Exhibitions",
+  "lede": "Rinaldo Marasco’s work has been presented in solo and group exhibitions. A selection of shows is listed below.",
+  "items": [
+   {
+    "id": "selva",
+    "group": "solo",
+    "year": "2022",
+    "title": "Selva",
+    "venue": "La Galerie Millenium, Crissier, Switzerland",
+    "text": "",
+    "images": [
+     "assets/exh-hall.webp"
+    ],
+    "caption": "SELVA — La Galerie Millenium, Crissier"
+   }
+  ]
+ },
+ "about": {
+  "title": "About",
+  "paragraphs": [
+   "Rinaldo Marasco is a Swiss-Italian multidisciplinary artist working across drawing, sculpture and other visual forms.",
+   "His work explores perception, symbolic memory and organic structures through layered compositions that evolve between immediate impact and progressive discovery.",
+   "At first glance, his works often appear through a unified form, a colour or a visual tension. As the gaze remains, they gradually reveal interconnected details, autonomous fragments and internal narratives that invite multiple levels of interpretation.",
+   "His compositions emerge through progressive and accumulative processes, without preliminary drawing or predetermined structure. Forms appear, connect and gradually reveal their own internal logic.",
+   "Developed through distinct bodies of work including Territories, Origins, Fantasmagoria and Precious Nature, Marasco’s practice investigates the shifting boundary between instinctive perception and constructed imagination.",
+   "He lives and works in Switzerland."
+  ],
+  "portrait": "assets/about-portrait.webp",
+  "video": "assets/about-film.mp4",
+  "poster": "assets/about-film-poster.jpg"
+ },
+ "contact": {
+  "title": "Contact",
+  "email": "rinaldo@rj41.ch",
+  "phone": "+41 79 682 16 97",
+  "instagram": "rinaldo_marasco"
+ }
+}

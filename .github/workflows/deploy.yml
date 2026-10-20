@@ -40,6 +40,8 @@ jobs:
             **/.infomaniak-maintenance.html
             **/README.md
             **/.nojekyll
+            **/content/**
+            content-path.php
 
   # ---------- PROD : uniquement dispatch manuel "production" ----------
   deploy-prod:
@@ -65,3 +67,5 @@ jobs:
             **/.infomaniak-maintenance.html
             **/README.md
             **/.nojekyll
+            **/content/**
+            content-path.php
