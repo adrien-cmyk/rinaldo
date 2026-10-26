@@ -1,6 +1,6 @@
 /* Rinaldo Marasco — scripts communs */
 /* Vitesses du rapprochement (réglables par œuvre dans l'admin, data-speed).
-   lat = délai de survol avant l'approche (ms) ; ez = vitesse d'approche pour un ×4.
+   lat = délai de survol avant l'approche (ms, accueil uniquement) ; ez = vitesse d'approche pour un ×4.
    Compensation : plus le grossissement est fort, plus l'approche est ralentie,
    pour que l'œil avance au même rythme (×8 au rythme d'un ×4). */
 function rmSpeed(speed, zoom){
@@ -11,7 +11,7 @@ function rmSpeed(speed, zoom){
 /* Mode Proximité — zoom centré (par œuvre via data-zoom / data-speed), navigation dès le début */
 function initProx(frame){
   const img=frame.querySelector('img'), dot=frame.querySelector('.dot');
-  const ZOOM=parseFloat(frame.dataset.zoom||'4'), SP=rmSpeed(frame.dataset.speed||'normal',ZOOM), LAT=SP.lat, EZ=SP.ez, EO=0.035, EP=0.055, NAV=1.03;
+  const ZOOM=parseFloat(frame.dataset.zoom||'4'), SP=rmSpeed(frame.dataset.speed||'normal',ZOOM), LAT=0 /* œuvres : approche immédiate (retour client 26.10) ; le délai ne s'applique qu'à l'accueil */, EZ=SP.ez, EO=0.035, EP=0.055, NAV=1.03;
   let inside=false,timer=null,nav=false,scale=1,tScale=1,px=.5,py=.5,tx=.5,ty=.5,raf=false;
   function loop(){
     const e=(tScale>scale)?EZ:EO; scale+=(tScale-scale)*e;
