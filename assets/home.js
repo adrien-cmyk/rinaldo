@@ -47,9 +47,9 @@
 
     if (Math.abs(targetScale-scale)>.0005 || Math.abs(tx-px)>.0005 || Math.abs(ty-py)>.0005){
       requestAnimationFrame(loop);
-    } else { rafActive=false; }
+    } else { rafActive=false; if(typeof rmLayer==='function') rmLayer(img,false); }
   }
-  function kick(){ if(!rafActive){ rafActive=true; requestAnimationFrame(loop);} }
+  function kick(){ if(!rafActive){ rafActive=true; if(typeof rmLayer==='function') rmLayer(img,true); requestAnimationFrame(loop);} }
 
   function pointFromEvent(e){
     const r = frame.getBoundingClientRect();
@@ -62,6 +62,7 @@
 
   /* --- souris --- */
   frame.addEventListener('mouseenter', e=>{
+    if(typeof rmHD==='function') rmHD(frame,img);
     inside=true; frame.classList.add('is-inside');
     tx=.5; ty=.5;                               // le rapprochement vise le centre
     const [ , , rx, ry]=pointFromEvent(e);
@@ -88,7 +89,7 @@
   function _applyP(){ const w=frame.clientWidth, h=frame.clientHeight;
     pox=Math.min(0, Math.max(w*(1-pScale), pox)); poy=Math.min(0, Math.max(h*(1-pScale), poy));
     img.style.transition=''; img.style.transform='translate('+pox+'px,'+poy+'px) scale('+pScale+')'; }
-  frame.addEventListener('touchstart', ev=>{
+  frame.addEventListener('touchstart', ev=>{ if(typeof rmHD==='function') rmHD(frame,img);
     const t=ev.touches;
     if(t.length===2){ startDist=_dist(t); startScale=pScale; const c=_cen(t); imgAx=(c[0]-pox)/pScale; imgAy=(c[1]-poy)/pScale; if(ev.cancelable) ev.preventDefault(); }
     else if(t.length===1){ const r=frame.getBoundingClientRect(); panX=t[0].clientX-r.left; panY=t[0].clientY-r.top; }

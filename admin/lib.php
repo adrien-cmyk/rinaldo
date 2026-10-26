@@ -127,6 +127,7 @@ function normalize(array $p): array {
     $hm = $p['home'] ?? [];
     $d['home'] = [
         'image' => media_path($hm['image'] ?? '') ?: 'assets/seed.webp',
+        'hd'    => media_path($hm['hd'] ?? ''),
         'title' => line($hm['title'] ?? '', 160),
         'w'     => max(1, (int)($hm['w'] ?? 1)),
         'h'     => max(1, (int)($hm['h'] ?? 1)),
@@ -165,6 +166,7 @@ function normalize(array $p): array {
                 'dim'    => line($w['dim'] ?? '', 120),
                 'tech'   => lines($w['tech'] ?? [], 8),
                 'image'  => $img,
+                'hd'     => $img !== '' ? media_path($w['hd'] ?? '') : '',
                 'w'      => max(1, (int)($w['w'] ?? 1)),
                 'h'      => max(1, (int)($w['h'] ?? 1)),
                 'zoom'   => max(0.0, min(10.0, (float)($w['zoom'] ?? 0))),
@@ -235,9 +237,10 @@ function unique_name(string $dir, string $slug, string $ext): string {
     return $n;
 }
 
-/* Enregistre une image envoyée : redimensionnée (max 2400 px) et convertie en WebP
-   si possible, sinon conservée telle quelle. Renvoie [chemin, largeur, hauteur]. */
-function store_image(array $f): array {
+/* Enregistre une image envoyée : version d'affichage (max 2400 px, WebP) et, si
+   $keepHd et que l'original est plus grand, le FICHIER ORIGINAL intact (non recompressé)
+   chargé par la loupe au premier survol. Renvoie [chemin, largeur, hauteur, hd]. */
+function store_image(array $f, bool $keepHd = false): array {
     if (($f['error'] ?? 1) !== UPLOAD_ERR_OK) throw new RuntimeException(upload_err((int)($f['error'] ?? 1)));
     $mime = (string)(new finfo(FILEINFO_MIME_TYPE))->file($f['tmp_name']);
     if (!isset(IMG_TYPES[$mime])) throw new RuntimeException('Format non pris en charge (JPEG, PNG, WebP ou GIF).');
@@ -278,16 +281,23 @@ function store_image(array $f): array {
             imagedestroy($src);
             $webp = function_exists('imagewebp');
             $name = unique_name($dir, $slug, $webp ? 'webp' : 'jpg');
-            $ok = $webp ? imagewebp($dst, $dir . '/' . $name, 86) : imagejpeg($dst, $dir . '/' . $name, 88);
+            $ok = $webp ? imagewebp($dst, $dir . '/' . $name, 90) : imagejpeg($dst, $dir . '/' . $name, 92);
             imagedestroy($dst);
-            if ($ok) return ['media/' . $name, $nw, $nh];
+            if ($ok) {
+                $hd = '';
+                if ($keepHd && $k < 1) {
+                    $hn = unique_name($dir, $slug . '-hd', IMG_TYPES[$mime]);
+                    if (move_uploaded_file($f['tmp_name'], $dir . '/' . $hn)) $hd = 'media/' . $hn;
+                }
+                return ['media/' . $name, $nw, $nh, $hd];
+            }
         }
     }
     /* Repli : fichier d'origine conservé */
     if ($orient >= 5 && $orient <= 8) [$w, $h] = [$h, $w];
     $name = unique_name($dir, $slug, IMG_TYPES[$mime]);
     if (!move_uploaded_file($f['tmp_name'], $dir . '/' . $name)) throw new RuntimeException('Écriture impossible sur le serveur.');
-    return ['media/' . $name, $w, $h];
+    return ['media/' . $name, $w, $h, ''];
 }
 function store_video(array $f): array {
     if (($f['error'] ?? 1) !== UPLOAD_ERR_OK) throw new RuntimeException(upload_err((int)($f['error'] ?? 1)));
@@ -295,7 +305,7 @@ function store_video(array $f): array {
     if (!isset(VID_TYPES[$mime])) throw new RuntimeException('Format vidéo non pris en charge (MP4).');
     $name = unique_name(media_dir(), slugify(pathinfo((string)$f['name'], PATHINFO_FILENAME)), VID_TYPES[$mime]);
     if (!move_uploaded_file($f['tmp_name'], media_dir() . '/' . $name)) throw new RuntimeException('Écriture impossible sur le serveur.');
-    return ['media/' . $name, 0, 0];
+    return ['media/' . $name, 0, 0, ''];
 }
 function upload_err(int $c): string {
     return match ($c) {

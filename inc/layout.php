@@ -97,7 +97,7 @@ function work_figure(array $w): string {
     $prox  = $zoom > 0;
     $bound = bound_class($w);
     $media = 'work-media' . ($prox ? ' prox' : '') . ' ' . $bound . ((!empty($w['large']) && $bound === 'wbound') ? ' lg' : '');
-    $attrs = $prox ? ' data-zoom="' . h(number_format($zoom, 1, '.', '')) . '"' . (($w['speed'] ?? 'normal') !== 'normal' ? ' data-speed="' . h($w['speed']) . '"' : '') . ' aria-label="' . h($title) . ' — approchez pour voir de plus près"' : '';
+    $attrs = $prox ? ' data-zoom="' . h(number_format($zoom, 1, '.', '')) . '"' . (($w['speed'] ?? 'normal') !== 'normal' ? ' data-speed="' . h($w['speed']) . '"' : '') . (!empty($w['hd']) ? ' data-hd="' . h(src($w['hd'])) . '"' : '') . ' aria-label="' . h($title) . ' — approchez pour voir de plus près"' : '';
     $o  = '  <figure class="work" id="' . h($w['id'] ?? '') . "\">\n    <div class=\"work-inner\">\n";
     $o .= '      <div class="' . $media . '" style="--ar:' . ar($w) . ';"' . $attrs . ">\n";
     $o .= '        <img src="' . h(src($w['image'] ?? '')) . '" alt="' . h($title) . ' — Rinaldo Marasco"' . ($prox ? ' draggable="false"' : '') . ">\n";

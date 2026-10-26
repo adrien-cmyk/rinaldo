@@ -58,8 +58,10 @@ if ($action !== '') {
         $f = $_FILES['file'] ?? null;
         if (!is_array($f) || is_array($f['name'])) json_out(['ok' => false, 'error' => 'Aucun fichier reçu.'], 400);
         try {
-            [$path, $w, $h] = (($_POST['kind'] ?? '') === 'video') ? store_video($f) : store_image($f);
-            json_out(['ok' => true, 'path' => $path, 'w' => $w, 'h' => $h, 'url' => admin_src($path)]);
+            [$path, $w, $h, $hd] = (($_POST['kind'] ?? '') === 'video') ? store_video($f) : store_image($f, ($_POST['hd'] ?? '') === '1');
+            $hw = $hh = 0;
+            if ($hd !== '' && ($i = @getimagesize(media_dir() . '/' . basename($hd)))) [$hw, $hh] = $i;
+            json_out(['ok' => true, 'path' => $path, 'w' => $w, 'h' => $h, 'hd' => $hd, 'hdw' => $hw, 'hdh' => $hh, 'url' => admin_src($path)]);
         } catch (Throwable $e) { json_out(['ok' => false, 'error' => $e->getMessage()], 400); }
     }
     if ($action === 'password') {

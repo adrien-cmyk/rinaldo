@@ -8,6 +8,16 @@ function rmSpeed(speed, zoom){
   const p=P[speed]||P.normal, z=Math.max(1.05,zoom||4);
   return {lat:p.lat, ez:p.ez*Math.log(4)/Math.log(z)};
 }
+/* Netteté : pendant le mouvement, l'image est animée comme un calque (fluide) ;
+   à l'arrêt, le calque est relâché pour que le navigateur la redessine nette
+   à la taille agrandie (sinon il agrandit une copie basse définition). */
+function rmLayer(img,on){ img.style.willChange = on ? 'transform' : 'auto'; }
+/* Fichier HD (data-hd) chargé au premier survol/toucher, puis substitué */
+function rmHD(frame,img){
+  const hd=frame.dataset.hd; if(!hd||frame._hd) return; frame._hd=1;
+  const pre=new Image(); pre.decoding='async'; pre.src=hd;
+  (pre.decode?pre.decode():new Promise(r=>pre.onload=r)).then(()=>{ img.src=hd; }).catch(()=>{});
+}
 /* Mode Proximité — zoom centré (par œuvre via data-zoom / data-speed), navigation dès le début */
 function initProx(frame){
   const img=frame.querySelector('img'), dot=frame.querySelector('.dot');
@@ -19,12 +29,12 @@ function initProx(frame){
     px+=(tx-px)*EP; py+=(ty-py)*EP;
     const w=frame.clientWidth,h=frame.clientHeight;
     img.style.transform='translate('+(px*w-px*w*scale)+'px,'+(py*h-py*h*scale)+'px) scale('+scale+')';
-    if(Math.abs(tScale-scale)>.0005||Math.abs(tx-px)>.0005||Math.abs(ty-py)>.0005) requestAnimationFrame(loop); else raf=false;
+    if(Math.abs(tScale-scale)>.0005||Math.abs(tx-px)>.0005||Math.abs(ty-py)>.0005) requestAnimationFrame(loop); else { raf=false; rmLayer(img,false); }
   }
-  function kick(){ if(!raf){raf=true;requestAnimationFrame(loop);} }
+  function kick(){ if(!raf){raf=true;rmLayer(img,true);requestAnimationFrame(loop);} }
   function pt(ev){ const r=frame.getBoundingClientRect(); const cx=ev.touches?ev.touches[0].clientX:ev.clientX, cy=ev.touches?ev.touches[0].clientY:ev.clientY;
     return [Math.min(1,Math.max(0,(cx-r.left)/r.width)),Math.min(1,Math.max(0,(cy-r.top)/r.height)),cx-r.left,cy-r.top]; }
-  frame.addEventListener('mouseenter',ev=>{ inside=true; frame.classList.add('is-inside'); tx=.5;ty=.5;
+  frame.addEventListener('mouseenter',ev=>{ rmHD(frame,img); inside=true; frame.classList.add('is-inside'); tx=.5;ty=.5;
     const p=pt(ev); if(dot){dot.style.left=p[2]+'px';dot.style.top=p[3]+'px';}
     clearTimeout(timer); timer=setTimeout(()=>{ if(inside){tScale=ZOOM;kick();} },LAT); });
   frame.addEventListener('mousemove',ev=>{ const p=pt(ev); if(dot){dot.style.left=p[2]+'px';dot.style.top=p[3]+'px';} if(nav){tx=p[0];ty=p[1];kick();} });
@@ -36,7 +46,7 @@ function initProx(frame){
   function _applyP(){ const w=frame.clientWidth, h=frame.clientHeight;
     pox=Math.min(0, Math.max(w*(1-pScale), pox)); poy=Math.min(0, Math.max(h*(1-pScale), poy));
     img.style.transition=''; img.style.transform='translate('+pox+'px,'+poy+'px) scale('+pScale+')'; }
-  frame.addEventListener('touchstart', ev=>{
+  frame.addEventListener('touchstart', ev=>{ rmHD(frame,img);
     const t=ev.touches;
     if(t.length===2){ startDist=_dist(t); startScale=pScale; const c=_cen(t); imgAx=(c[0]-pox)/pScale; imgAy=(c[1]-poy)/pScale; if(ev.cancelable) ev.preventDefault(); }
     else if(t.length===1){ const r=frame.getBoundingClientRect(); panX=t[0].clientX-r.left; panY=t[0].clientY-r.top; }

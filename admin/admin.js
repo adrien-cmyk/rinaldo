@@ -65,10 +65,10 @@
   }
 
   /* ----------------------------------------------------------- envoi -- */
-  function upload(file, kind = "image", onProgress) {
+  function upload(file, kind = "image", onProgress, hd) {
     return new Promise((res, rej) => {
       if (file.size > I.limit) return rej(new Error(`« ${file.name} » est trop lourd (max ${Math.round(I.limit / 1048576)} Mo).`));
-      const fd = new FormData(); fd.append("file", file); fd.append("kind", kind); fd.append("csrf", I.csrf);
+      const fd = new FormData(); fd.append("file", file); fd.append("kind", kind); fd.append("csrf", I.csrf); if (hd) fd.append("hd", "1");
       const x = new XMLHttpRequest();
       x.open("POST", "?action=upload");
       x.setRequestHeader("X-CSRF", I.csrf);
@@ -106,7 +106,7 @@
         b.classList.toggle("has", !!v);
         b.textContent = v ? "" : "Aucune image";
       }
-      const dm = $(".pick__dim", p); if (dm) dm.textContent = v && obj.w > 1 ? `${obj.w} × ${obj.h} px` : "";
+      const dm = $(".pick__dim", p); if (dm) dm.textContent = v && obj.w > 1 ? `${obj.w} × ${obj.h} px` + (o.hd && obj.hd ? ` · original HD conservé pour la loupe${obj._hdw ? ` (${obj._hdw} × ${obj._hdh})` : ""}` : "") : "";
     }
     async function choose() {
       const [f] = await chooseFiles(video ? "video/mp4,video/webm,video/quicktime" : "image/jpeg,image/png,image/webp,image/gif");
@@ -114,7 +114,8 @@
       p.classList.add("busy");
       const lab = $('[data-a="choose"]', p);
       try {
-        const r = await upload(f, video ? "video" : "image", pc => (lab.textContent = `Envoi… ${pc} %`));
+        const r = await upload(f, video ? "video" : "image", pc => (lab.textContent = `Envoi… ${pc} %`), o.hd);
+        if (o.hd) { obj.hd = r.hd || ""; obj._hdw = r.hdw; obj._hdh = r.hdh; }
         obj[key] = r.path;
         if (o.dims) { obj.w = r.w; obj.h = r.h; }
         if (o.on) o.on(r);
@@ -125,7 +126,7 @@
     $('[data-a="choose"]', p).addEventListener("click", choose);
     const box = $(".pick__box", p); if (box) box.addEventListener("click", choose);
     const rm = $('[data-a="rm"]', p);
-    if (rm) rm.addEventListener("click", () => { obj[key] = ""; markDirty(); paint(); });
+    if (rm) rm.addEventListener("click", () => { obj[key] = ""; if (o.hd) obj.hd = ""; markDirty(); paint(); });
     paint();
     return p;
   }
@@ -191,7 +192,7 @@
       <button type="button" class="del" title="Supprimer l'œuvre">✕</button>
     </div>`);
     r._d = w;
-    $(".work__img", r).appendChild(picker(w, "image", { dims: true }));
+    $(".work__img", r).appendChild(picker(w, "image", { dims: true, hd: true }));
     $(".a", r).append(field(w, "title", "Titre"), field(w, "date", "Année", { ph: "2024" }), field(w, "dim", "Dimensions", { ph: "100 × 100 cm" }));
     $(".b", r).append(field(w, "tech", "Technique (une ligne par ligne du cartel)", { area: true, rows: 2, lines: true }));
     const opts = $(".work__opts", r);
@@ -385,7 +386,7 @@
     const right = el(`<div></div>`);
     right.append(field(h, "title", "Titre de l'œuvre"), select(h, "zoom", "Rapprochement", [[1.5, "×1,5"], [2, "×2"], [3, "×3"], [4, "×4"]]),
       (h.speed = h.speed || "slow", select(h, "speed", "Vitesse", SPEEDS)));
-    $(".t", p).append(picker(h, "image", { wide: true, dims: true }), right);
+    $(".t", p).append(picker(h, "image", { wide: true, dims: true, hd: true }), right);
     return p;
   }
 
@@ -424,7 +425,7 @@
     const out = JSON.parse(JSON.stringify(D));
     out.series = $$("#seriesList > .ser").map(sEl => Object.assign({}, sEl._d, { works: $$(".works > .work", sEl).map(w => w._d) }));
     out.exhibitions.items = $$("#exhList > .blk").map(x => x._d);
-    return JSON.parse(JSON.stringify(out, (k, v) => (k === "_k" ? undefined : v)));
+    return JSON.parse(JSON.stringify(out, (k, v) => (k === "_k" || k === "_hdw" || k === "_hdh" ? undefined : v)));
   }
   async function save(force) {
     const btn = $("#saveBtn"); btn.disabled = true; $("#saveState").textContent = "Enregistrement…";
