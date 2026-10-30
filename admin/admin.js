@@ -396,7 +396,16 @@
     const p = el(`<section class="panel" data-panel="settings">
       <div class="card"><h2>Site</h2><div class="g2 t"></div></div>
       <div class="card"><h2>Stockage du contenu</h2><div class="info st"></div></div>
-      <div class="card"><h2>Mot de passe</h2>
+      <div class="card"><h2>Accès à l'administration</h2>
+        <p class="hint">Chaque accès a son propre mot de passe, qui ouvre la même administration. Vous êtes connecté avec l'accès <b class="me"></b>.</p>
+        <div class="list acc" style="gap:6px"></div>
+        <div class="g3" style="margin-top:12px;align-items:end">
+          <div class="f"><label>Nom du nouvel accès</label><input class="in" id="accName" placeholder="ex. Adrien"></div>
+          <div class="f"><label>Mot de passe (10 caractères min.)</label><input class="in" type="password" id="accPw" autocomplete="new-password"></div>
+          <div class="f"><button type="button" class="btn2 btn2--add" id="accAdd">+ Ajouter l'accès</button></div>
+        </div>
+      </div>
+      <div class="card"><h2>Mon mot de passe</h2>
         <div class="g2"><div class="f"><label>Mot de passe actuel</label><input class="in" type="password" id="pwOld" autocomplete="current-password"></div>
         <div class="f"><label>Nouveau mot de passe (10 caractères min.)</label><input class="in" type="password" id="pwNew" autocomplete="new-password"></div></div>
         <button type="button" class="btn2" id="pwBtn">Changer le mot de passe</button>
@@ -406,6 +415,30 @@
     $(".st", p).innerHTML = I.shared
       ? `<div class="ok">✓ Contenu partagé entre le site de test et le site final.</div><div class="muted">Dossier : <code>${esc(I.dir)}</code></div>`
       : `<div class="warn">Contenu propre à ce site (dossier partagé inaccessible).</div><div class="muted">Dossier : <code>${esc(I.dir)}</code></div>`;
+    $(".me", p).textContent = I.who || "Principal";
+    const acc = $(".acc", p);
+    const paintAcc = () => {
+      acc.innerHTML = "";
+      ["", ...I.users].forEach(n => {
+        const r = el(`<div class="row" style="display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid var(--line);border-radius:10px"><span style="flex:1"></span></div>`);
+        $("span", r).textContent = (n || "Principal") + (n === I.who ? " (vous)" : "");
+        if (n && n !== I.who) {
+          const d = el(`<button type="button" class="del" title="Supprimer cet accès">✕</button>`);
+          d.addEventListener("click", async () => {
+            if (!confirm(`Supprimer l'accès « ${n} » ?`)) return;
+            const res = await api("users", { op: "del", name: n });
+            if (res.ok) { I.users = res.users; paintAcc(); toast("Accès supprimé."); } else toast(res.error, true);
+          });
+          r.appendChild(d);
+        }
+        acc.appendChild(r);
+      });
+    };
+    paintAcc();
+    $("#accAdd", p).addEventListener("click", async () => {
+      const res = await api("users", { op: "add", name: $("#accName").value, pw: $("#accPw").value });
+      if (res.ok) { I.users = res.users; paintAcc(); $("#accName").value = $("#accPw").value = ""; toast("Accès ajouté."); } else toast(res.error, true);
+    });
     $("#pwBtn", p).addEventListener("click", async () => {
       const r = await api("password", { old: $("#pwOld").value, new: $("#pwNew").value });
       if (r.ok) { toast("Mot de passe changé."); $("#pwOld").value = $("#pwNew").value = ""; } else toast(r.error, true);

@@ -32,9 +32,12 @@ function auth_save(array $a): void {
     @chmod(auth_file(), 0600);
 }
 function has_password(): bool { return !empty(auth_data()['hash']); }
-function set_password(string $pw): void {
+/* Comptes : 'hash' = accès principal (client) ; 'users' = accès supplémentaires
+   [nom => empreinte] (ex. le webmaster). Session : rm_who = '' (principal) ou nom. */
+function set_password(string $pw, string $who = ''): void {
     $a = auth_data();
-    $a['hash'] = password_hash($pw, PASSWORD_DEFAULT);
+    if ($who === '') $a['hash'] = password_hash($pw, PASSWORD_DEFAULT);
+    else $a['users'][$who] = password_hash($pw, PASSWORD_DEFAULT);
     $a['fails'] = 0; $a['until'] = 0;
     auth_save($a);
 }
@@ -43,10 +46,14 @@ function locked_for(): int { return max(0, (int)(auth_data()['until'] ?? 0) - ti
 function try_login(string $pw): bool {
     $a = auth_data();
     if (locked_for() > 0) return false;
-    if (!empty($a['hash']) && password_verify($pw, $a['hash'])) {
+    $who = null;
+    if (!empty($a['hash']) && password_verify($pw, $a['hash'])) $who = '';
+    else foreach ((array)($a['users'] ?? []) as $n => $hh) if (password_verify($pw, (string)$hh)) { $who = (string)$n; break; }
+    if ($who !== null) {
         $a['fails'] = 0; $a['until'] = 0; auth_save($a);
         session_regenerate_id(true);
         $_SESSION['rm_admin'] = true;
+        $_SESSION['rm_who'] = $who;
         return true;
     }
     $a['fails'] = (int)($a['fails'] ?? 0) + 1;
@@ -55,7 +62,13 @@ function try_login(string $pw): bool {
     usleep(600000);
     return false;
 }
-function is_logged_in(): bool { return !empty($_SESSION['rm_admin']); }
+function current_who(): string { return (string)($_SESSION['rm_who'] ?? ''); }
+function account_hash(string $who): string { $a = auth_data(); return (string)($who === '' ? ($a['hash'] ?? '') : ($a['users'][$who] ?? '')); }
+function is_logged_in(): bool {
+    if (empty($_SESSION['rm_admin'])) return false;
+    if (account_hash(current_who()) === '') { logout(); return false; }   // accès supprimé entre-temps
+    return true;
+}
 function logout(): void { $_SESSION = []; session_destroy(); }
 function csrf_token(): string {
     if (empty($_SESSION['csrf'])) $_SESSION['csrf'] = bin2hex(random_bytes(16));

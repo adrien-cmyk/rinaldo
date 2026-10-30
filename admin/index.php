@@ -66,11 +66,27 @@ if ($action !== '') {
     }
     if ($action === 'password') {
         $in = json_decode((string)file_get_contents('php://input'), true) ?: [];
-        $a = auth_data();
-        if (!password_verify((string)($in['old'] ?? ''), (string)($a['hash'] ?? ''))) json_out(['ok' => false, 'error' => 'Mot de passe actuel incorrect.'], 400);
+        if (!password_verify((string)($in['old'] ?? ''), account_hash(current_who()))) json_out(['ok' => false, 'error' => 'Mot de passe actuel incorrect.'], 400);
         if (mb_strlen((string)($in['new'] ?? '')) < 10) json_out(['ok' => false, 'error' => 'Le nouveau mot de passe doit contenir au moins 10 caractères.'], 400);
-        set_password((string)$in['new']);
+        set_password((string)$in['new'], current_who());
         json_out(['ok' => true]);
+    }
+    if ($action === 'users') {
+        $in = json_decode((string)file_get_contents('php://input'), true) ?: [];
+        $a = auth_data(); $users = (array)($a['users'] ?? []);
+        $name = line($in['name'] ?? '', 40);
+        if (($in['op'] ?? '') === 'add') {
+            if ($name === '') json_out(['ok' => false, 'error' => 'Indiquez un nom pour cet accès.'], 400);
+            if (isset($users[$name]) || mb_strtolower($name) === 'principal') json_out(['ok' => false, 'error' => 'Ce nom existe déjà.'], 400);
+            if (mb_strlen((string)($in['pw'] ?? '')) < 10) json_out(['ok' => false, 'error' => 'Le mot de passe doit contenir au moins 10 caractères.'], 400);
+            foreach (array_merge([(string)($a['hash'] ?? '')], array_values($users)) as $hh)
+                if ($hh !== '' && password_verify((string)$in['pw'], (string)$hh)) json_out(['ok' => false, 'error' => 'Choisissez un mot de passe différent de ceux existants.'], 400);
+            set_password((string)$in['pw'], $name);
+        } elseif (($in['op'] ?? '') === 'del') {
+            if ($name === current_who()) json_out(['ok' => false, 'error' => 'Vous ne pouvez pas supprimer votre propre accès.'], 400);
+            unset($a['users'][$name]); auth_save($a);
+        }
+        json_out(['ok' => true, 'users' => array_keys((array)(auth_data()['users'] ?? []))]);
     }
     json_out(['ok' => false, 'error' => 'Action inconnue.'], 404);
 }
@@ -84,6 +100,8 @@ $init = [
     'limit'  => upload_limit(),
     'shared' => content_is_shared(),
     'dir'    => content_dir(),
+    'who'    => current_who(),
+    'users'  => array_keys((array)(auth_data()['users'] ?? [])),
 ];
 ?><!DOCTYPE html>
 <html lang="fr">
