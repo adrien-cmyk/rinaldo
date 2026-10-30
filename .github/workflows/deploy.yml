@@ -56,7 +56,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ secrets.FTP_SERVER_DIR || './' }}
+          server-dir: ./sites/rinaldomarasco.art/   # fixé ici : jamais la racine FTP
           protocol: ftps
           exclude: |
             **/.git*
@@ -69,3 +69,12 @@ jobs:
             **/.nojekyll
             **/content/**
             content-path.php
+      # Une page index.html laissée par l'hébergeur passerait devant index.php : on la retire
+      - name: Remove default index.html (if any)
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          sudo apt-get -qq update >/dev/null && sudo apt-get -qq install -y lftp >/dev/null
+          lftp -u "$FTP_USERNAME,$FTP_PASSWORD" "$FTP_SERVER" -e "set ftp:ssl-force true; set ssl:verify-certificate no; cd sites/rinaldomarasco.art; ls; rm -f index.html; rm -f index.htm; bye" || true
